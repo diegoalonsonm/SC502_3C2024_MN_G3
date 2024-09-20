@@ -1,5 +1,9 @@
 # SC502_3C2024_MN_G3
 
+Proyecto Ambiente Web Cliente/Servidor
+Grupo 3
+Tema: por definir
+
 ## Integrantes
 - Charlotte Alfaro
 - Emanuel Fernandez
