@@ -5,7 +5,7 @@ Grupo 3
 Tema: por definir
 
 ## Integrantes
-
+- Diego Naranjo
 
 ### Estructura de carpetas
 - En la carpeta _controllers_ van a ir los controladores con el formato _NOMBRETABLAController.php_
