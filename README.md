@@ -5,12 +5,7 @@ Grupo 3
 Tema: por definir
 
 ## Integrantes
-- Charlotte Alfaro
-- Emanuel Fernandez
-- Jamal Marshall
-- Diego Narajo
-- Dan Ramirez 
-- Mariana Rodriguez
+
 
 ### Estructura de carpetas
 - En la carpeta _controllers_ van a ir los controladores con el formato _NOMBRETABLAController.php_
