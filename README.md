@@ -8,6 +8,7 @@ Tema: por definir
 - Diego Naranjo
 - Jamal Marshall
 - Dan Ramírez
+- Mariana Rodríguez
 
 ### Estructura de carpetas
 - En la carpeta _controllers_ van a ir los controladores con el formato _NOMBRETABLAController.php_
