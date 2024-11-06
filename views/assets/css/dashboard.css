@@ -10,6 +10,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+    background-color: #0d0c47;
 }
 
 .bg-dark {
@@ -22,4 +23,36 @@ body {
 
 .nav-item:active {
     background-color: #1d1d5d !important;
+}
+
+.sidebar .nav-link {
+    color: #fff;
+    font-weight: bold;
+}
+
+.sidebar .nav-link.active {
+    background-color: #fff;
+    color: #222;
+}
+
+.dropdown-menu {
+    background-color: #f4f4f2;
+    border: none;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #222;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: olive;
+    color: #ffffff;
+}
+
+.dropdown .dropdown-toggle {
+    color: #fff;
+}
+
+.sidebar hr {
+    color: #fff;
 }

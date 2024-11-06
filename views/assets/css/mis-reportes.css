@@ -1,0 +1,51 @@
+.label-custom-report {
+    border: none;
+    color: #ffffff;
+    background-color: #425c25;
+    cursor: pointer;
+    position: relative;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.label-custom-report:hover {
+    opacity: 85%;
+    transition: all 0.3s ease;
+}
+
+.btn-ver-mas-reportes {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    font-size: 14px;
+    background-color: #0d0c47;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    bottom: 10px;
+    right: 10px;
+    width: 20%;
+}
+
+.btn-ver-mas-reportes a {
+    text-decoration: none;
+    color: white;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+@media (max-width: 1400px) {
+    .button-container {
+        justify-content: center;
+    }
+
+    .btn-ver-mas-reportes {
+        width: 100%;
+        padding: 10px;
+    }
+}
