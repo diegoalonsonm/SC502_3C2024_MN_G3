@@ -24,7 +24,7 @@
                     <li class="link"><a href="reportes.php">Reportar</a></li>
                 </ul>
             </div>
-            <button class="btn-login"><i class="fa-solid fa-right-to-bracket"></i></button>
+            <a href="dashboard.php"><button class="btn-login"><i class="fa-solid fa-right-to-bracket"></i></button></a>
         </nav>
     </header>
 
