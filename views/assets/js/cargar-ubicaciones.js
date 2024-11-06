@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
     cargarProvincias();
 });
 
@@ -17,7 +17,7 @@ function cargarProvincias() {
         .catch(error => console.error('Error al cargar provincias:', error));
 }
 
-document.getElementById('provincia').addEventListener('change', () => {
+document.getElementById('provincia').addEventListener('change', function () {
     const provinciaId = this.value;
     if (provinciaId) {
         cargarCantones(provinciaId);
@@ -33,6 +33,7 @@ function cargarCantones(provinciaId) {
         .then(data => {
             limpiarSelector('canton');
             limpiarSelector('distrito');
+            limpiarSelector('distrito');
             const cantonSelect = document.getElementById('canton');
             for (const id in data) {
                 const option = document.createElement('option');
@@ -44,7 +45,8 @@ function cargarCantones(provinciaId) {
         .catch(error => console.error('Error al cargar cantones:', error));
 }
 
-document.getElementById('canton').addEventListener('change', () => {
+
+document.getElementById('canton').addEventListener('change', function () {
     const provinciaId = document.getElementById('provincia').value;
     const cantonId = this.value;
     if (provinciaId && cantonId) {
