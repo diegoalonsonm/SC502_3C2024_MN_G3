@@ -32,7 +32,8 @@ function cargarCantones(provinciaId) {
         .then(response => response.json())
         .then(data => {
             limpiarSelector('canton');
-            limpiarSelector('distrito'); // Limpiar distritos al seleccionar un nuevo cantón
+            limpiarSelector('distrito');
+            limpiarSelector('distrito');
             const cantonSelect = document.getElementById('canton');
             for (const id in data) {
                 const option = document.createElement('option');
@@ -43,6 +44,7 @@ function cargarCantones(provinciaId) {
         })
         .catch(error => console.error('Error al cargar cantones:', error));
 }
+
 
 document.getElementById('canton').addEventListener('change', function () {
     const provinciaId = document.getElementById('provincia').value;
