@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./assets/css/dashboard.css">
   <link rel="stylesheet" href="./assets/css/hacer-reportes.css">
   <link rel="stylesheet" href="./assets/css/mis-reportes.css">
+  <link rel="stylesheet" href="./assets/css/ver-reportes.css">
 </head>
 
 <body>
@@ -347,6 +348,49 @@
         </div>
     </section>';
               break;
+            case 'inicio':
+                echo '<h1 class="text-white">Inicio</h1><p class="text-white">Bienvenido al dashboard.</p>';
+                break;
+            case 'ver-reportes':
+                  echo '
+                  <link rel="stylesheet" href="ver-reportes.css">
+                  <section class="ver-reportes">
+                      <div class="container py-5">
+                          <h1 class="text-center text-white mb-5">Ver Reportes</h1>     
+                          <div class="row text-white text-center">
+                              <div class="col"><strong>Reporte</strong></div>
+                              <div class="col"><strong>Fecha</strong></div>
+                              <div class="col"><strong>Dirección</strong></div>
+                              <div class="col"><strong>Descripción</strong></div>
+                              <div class="col"><strong>Acción</strong></div>
+                          </div>
+                          <hr class="bg-light">';
+                $reportes = [
+                      ["Reporte #1", "2024-11-01", "Heredia", "Alcantarilla Bloqueada", "#"],
+                      ["Reporte #2", "2024-11-02", "Alajuela", "Alcantarilla no desbordada", "#"],
+                      ["Reporte #3", "2024-11-03", "San José", "Alcantarilla Bloqueada", "#"],
+                      ["Reporte #4", "2024-11-04", "San Carlos", "Alcantarilla desbordada", "#"],
+                      ["Reporte #5", "2024-11-05", "Cartago", "Alcantarilla desbordada", "#"]
+                  ];
+              
+                  foreach ($reportes as $reporte) {
+                      echo '
+                          <div class="row text-white text-center mb-2">
+                              <div class="col">' . $reporte[0] . '</div>
+                              <div class="col">' . $reporte[1] . '</div>
+                              <div class="col">' . $reporte[2] . '</div>
+                              <div class="col">' . $reporte[3] . '</div>
+                              <div class="col"><a href="' . $reporte[4] . '" class="btn btn-primary btn-sm">Ver</a></div>
+                          </div>
+                          <hr class="bg-light">
+                      ';
+                  }
+                  
+                  echo '
+                      </div>
+                  </section>';
+                  break;
+              
             default:
               echo '<h1 class="text-white">Contenido principal</h1><p class="text-white">Aquí va el contenido de la página.</p>';
               break;
