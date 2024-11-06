@@ -1,4 +1,5 @@
 <aside class="sidebar">
+    <hr>
     <ul class="nav flex-column vh-100 mt-2">
         <li class="nav-item">
             <a href="index.php" class="nav-link">
