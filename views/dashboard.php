@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./assets/css/dashboard.css">
   <link rel="stylesheet" href="./assets/css/hacer-reportes.css">
   <link rel="stylesheet" href="./assets/css/mis-reportes.css">
+  <link rel="stylesheet" href="./assets/css/editar-sensor.css">
 </head>
 
 <body>
@@ -156,9 +157,31 @@
                                           <div class="card-body">
                                             <p>Id:</p>
                                             <p>Estado:</p>
-                                            <p>Coordeadas</p>                                               
+                                            <p>Coordenadas</p>                                               
                                             <div class="mt-2">
-                                                <a class="btn btn-primary" href="#">Ver más</a>
+                                                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Ver más</a>
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                      <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Información del sensor</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                      </div>
+                                                      <div class="modal-body">
+                                            <p>Id:</p>
+                                            <p>Estado:</p>
+                                            <p>Coordenadas:</p>
+                                            <p>asdlksa:</p>   
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <a class="btn btn-success" href="dashboard.php?page=sensor-editar">Editar</a>
+                                                <a class="btn btn-danger" href="#">Borrar</a>
                                             </div>                                                                                                                            
                                           </div>
                                         </div>
@@ -169,6 +192,8 @@
                                             <p>Coordeadas</p> 
                                             <div class="mt-2">
                                                 <a class="btn btn-primary" href="#">Ver más</a>
+                                                <a class="btn btn-success" href="#">Editar</a>
+                                                <a class="btn btn-danger" href="#">Borrar</a>
                                             </div>                                                                                                                            
                                           </div>
                                         </div>
@@ -181,6 +206,8 @@
                                             <p>Coordeadas</p> 
                                             <div class="mt-2">
                                                 <a class="btn btn-primary" href="#">Ver más</a>
+                                                <a class="btn btn-success" href="#">Editar</a>
+                                                <a class="btn btn-danger" href="#">Borrar</a>
                                             </div>                                                                                                                            
                                           </div>
                                         </div>
@@ -191,6 +218,8 @@
                                             <p>Coordeadas</p>  
                                             <div class="mt-2">
                                                 <a class="btn btn-primary" href="#">Ver más</a>
+                                                <a class="btn btn-success" href="#">Editar</a>
+                                                <a class="btn btn-danger" href="#">Borrar</a>
                                             </div>                                                                                                                            
                                           </div>
                                         </div>                                       
@@ -342,10 +371,49 @@
                     <div class="form-text text-white">*Ingrese la dirección exacta donde se encuentra el problema o
                         alguna referencia.</div>
                 </div>
+
+                <div class="mb-3">
+                    <label for="imagen" class="form-label">Adjunta una imagen</label>
+                    <input type="file" id="imagen" name="imagen" accept="image/*">
+                    <div class="form-text text-white">*Adjuntar una imagen del problema puede ayudar a los especialistas a ver la gravedad.</div>
+                </div>
+
                 <button type="submit" class="btn">Realizar reporte</button>
             </form>
         </div>
     </section>';
+              break;
+            case 'sensor-editar':
+              echo '
+    <section class="editar-sensores">
+        <div class="container mt-4">
+            <h2>Editar sensor</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="id" class="form-label">ID</label>
+                    <input type="text" class="form-control" id="id">
+                </div>
+                <div class="mb-3">
+                    <label for="estado" class="form-label">Estado</label>
+                    <select id="estado" class="form-select">
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="coordenadas" class="form-label">Coordenadas</label>
+                    <input type="text" class="form-control" id="coordenadas">
+                </div>
+                <button type="submit" class="btn">Guardar cambios</button>
+            </form>
+        </div>
+    </section>';
+              break;
+            case 'usuario-editar':
+              echo '
+              
+              
+              ';
               break;
             default:
               echo '<h1 class="text-white">Contenido principal</h1><p class="text-white">Aquí va el contenido de la página.</p>';
