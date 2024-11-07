@@ -580,12 +580,6 @@
         </div>
     </section>';
               break;
-            case 'usuario-editar':
-              echo '
-              
-              
-              ';
-              break;
             default:
               echo '<h1 class="text-white">Contenido principal</h1><p class="text-white">Aquí va el contenido de la página.</p>';
               break;
