@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hacer-reporte-form {
+    padding: 20px;
+    background-color: #425c25;
+    margin: 0 auto;
+    width: 40%;
+    color: white;
+    border-radius: 10px;
+}
+
+.hacer-reporte-form button {
+    padding: 10px 20px;
+    margin: 0 auto;
+    font-weight: 500;
+    color: white;
+    display: flex;
+    background-color: #1d4ed8;
+}
+
+.hacer-reporte-form button:hover {
+    background-color: #1d4ed8;
+    opacity: 90%;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .hacer-reporte-form {
+        margin-top: 2rem;
+        width: 80%;
+    }
+}

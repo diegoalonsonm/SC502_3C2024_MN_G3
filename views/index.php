@@ -14,7 +14,7 @@
     <header>
         <nav>
             <div class="nav-logo">
-                <a href="index.html"><img src="assets/img/aya_logo.png" alt=""></a>
+                <a href="index.php"><img src="assets/img/aya_logo.png" alt=""></a>
             </div>
             <div class="nav-container">
                 <ul class="nav-links">

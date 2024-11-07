@@ -17,16 +17,24 @@
                 <div class="col">
                     <div class="card shadow-lg w-50 mx-auto">
                         <form action="" class="p-5">
-                            <h2 class="text-center">Inicia Sesion</h2>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Correo electronico</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <a href="" class="text-dark">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </a>
+                                <h2 class="flex-grow-1 text-center m-0">Inicia Sesion</h2>
+                                <div style="width: 24px;"></div>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
+                                <label for="correo" class="form-label">Correo electronico</label>
+                                <input type="email" class="form-control" id="correo" aria-describedby="emailHelp" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Ingresar</button>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary px-4 mb-2">Ingresar</button>
+                            <br>
+                            <a href="#">¿Aún no tienes una cuenta? Registrate aquí</a>
                         </form>
                     </div>
                 </div>
