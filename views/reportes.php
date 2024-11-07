@@ -17,15 +17,50 @@
                 </div>
                 <div class="nav-container">
                     <ul class="nav-links">
-                        <li class="link"><a href="sensores.php">Sensores</a></li>
                         <li class="link"><a href="alertas.php">Alertas</a></li>
                         <li class="link"><a href="Mapa.php">Mapa</a></li>
                         <li class="link"><a href="reportes.php">Reportar</a></li>
                     </ul>
                 </div>
-                <button class="btn-login"><i class="fa-solid fa-right-to-bracket"></i></button>
-            </nav>
+                <a href="dashboard.php"><button class="btn-login"><i class="fa-solid fa-right-to-bracket"></i></button></a>
+                </nav>
         </header>
-    
+
+
+        <footer class="container">
+        <span class="blur"></span>
+        <span class="blur"></span>
+        <div class="column">
+            <p>
+                Nuestras redes sociales:
+            </p>
+            <div class="socials">
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="column">
+            <h4>Empresa</h4>
+            <a href="https://www.aya.go.cr/">Organización</a>
+            <a href="https://ufidelitas.ac.cr/">Sponsor</a>
+        </div>
+        <div class="column">
+            <h4>Sobre nosotros</h4>
+            <a href="#">x</a>
+            <a href="#">x</a>
+            <a href="#">x</a>
+        </div>
+        <div class="column">
+            <h4>Contáctenos</h4>
+            <a href="#">Correo</a>
+            <a href="#">Políticas de privacidad</a>
+            <a href="#">Términos y condiciones</a>
+        </div>
+    </footer>
+
+    <div class="copyright">
+        Copyright © 2024 Alcantarillado Costa Rica. All Rights Reserved.
+    </div>
 </body>
 </html>
