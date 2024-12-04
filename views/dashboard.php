@@ -557,7 +557,6 @@
               break;
             case 'ver-reportes':
               echo '
-                  <link rel="stylesheet" href="ver-reportes.css">
                   <section class="ver-reportes">
                       <div class="bg-color-reportes py-5">
                           <h1 class="text-center text-white mb-5">Ver Reportes</h1>     
@@ -584,12 +583,11 @@
                               <div class="col">' . $reporte[1] . '</div>
                               <div class="col">' . $reporte[2] . '</div>
                               <div class="col">' . $reporte[3] . '</div>
-                              <div class="col"><a href="' . $reporte[4] . '" class="btn btn-primary btn-sm">Ver</a></div>
+                              <div class="col"><a href="' . $reporte[4] . '" class="btn btn-ver-reporte btn-sm">Ver</a></div>
                           </div>
                           <hr class="bg-light">
                       ';
               }
-
               echo '
                       </div>
                   </section>';
