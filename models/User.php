@@ -1,7 +1,7 @@
 <?php
 require_once '../config/Conexion.php';
 
-class Usuario extends Conexion
+class User extends Conexion
 {
     /*=============================================
 	=            Atributos de la Clase            =
@@ -131,7 +131,7 @@ class Usuario extends Conexion
                 $resultado->execute();
                 self::desconectar();
                 foreach ($resultado->fetchAll() as $encontrado) {
-                    $user = new Usuario();
+                    $user = new User();
                     $user->setIdUsuario($encontrado['idUsuario']);
                     $user->setCorreo($encontrado['correo']);
                     $user->setNombre($encontrado['nombre']);
@@ -172,7 +172,7 @@ class Usuario extends Conexion
         }
 
         public function guardarEnDb(){
-            $query = "INSERT INTO `usuarios`(`correo`, `nombre`,'apellido1','apellido2', `contrasena`, `telefono`, `estado`, `cambioContrasena`, `created_at`) VALUES (:correo,:nombre,:contrasena,:telefono,:estado,:cambioContrasena,now())";
+            $query = "INSERT INTO `usuarios`(`nombre`,'apellido1','apellido2', 'cedula', `correo`, `telefono` ,`contrasena`,'idRol' , `idEstado`) VALUES (:nombre,:apellido1,:apellido2,:cedula,:correo,:telefono,:contrasena,:idRol,:idEstado";
          try {
              self::getConexion();
              $correo=$this->getCorreo();
