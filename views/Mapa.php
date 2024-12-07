@@ -10,6 +10,7 @@
     
     <body>
     
+
         <header>
             <nav>
                 <div class="nav-logo">
@@ -26,7 +27,7 @@
                 </nav>
         </header>
     <section class="Gmap-container">
-    <div class="content">
+    <div class="content" style="width: 1000px;">
         <span class="blur"></span>
         <span class="blur"></span>
         <h1>Mapa del Area</h1>
