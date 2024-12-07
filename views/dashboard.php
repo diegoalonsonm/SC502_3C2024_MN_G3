@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="./assets/css/mis-reportes.css">
   <link rel="stylesheet" href="./assets/css/ver-reportes.css">
   <link rel="stylesheet" href="./assets/css/editar-sensor.css">
+  <link rel= "stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+
 </head>
 
 <body>
@@ -117,17 +119,18 @@
                     <div class="container mt-4">
                         <div class="row">
                             <div class="col">  
-                                <table class="table table-hover">
+                                <table id="tbUsuarios" class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Nombre</th>                                                  
+                                            <th scope="col">Nombre</th> 
+                                            <th scope="col">Primer Apellido</th> 
+                                            <th scope="col">Segundo Apellido</th>                                       
                                             <th scope="col">Cedula</th>
                                             <th scope="col">Correo</th>
                                             <th scope="col">Telefono</th>
                                             <th scope="col">Rol</th>                                                 
                                             <th scope="col">Estado</th>
-                                            <th scope="col">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -634,6 +637,10 @@
 
   <script src="./assets/js/cargar-ubicaciones.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+<script src="./assets/js/tablaUsuarios.js"></script>
+
 </body>
 
 </html>

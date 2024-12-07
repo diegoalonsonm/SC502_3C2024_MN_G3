@@ -35,7 +35,7 @@ class User extends Conexion
         }
         public function setCedulula($cedula)
         {
-            $this->cedula->$cedula;
+            $this->cedula=$cedula;
         }
         public function getApellido1()
         {
@@ -43,7 +43,7 @@ class User extends Conexion
         }
         public function setApellido1($apellido1)
         {
-            $this->apellido1->$apellido1;
+            $this->apellido1=$apellido1;
         }
         public function getApellido2()
         {
@@ -51,7 +51,7 @@ class User extends Conexion
         }
         public function setApellido2($apellido2)
         {
-            $this->apellido1->$apellido2;
+            $this->apellido1=$apellido2;
         }
         public function getIdUsuario()
         {
@@ -124,31 +124,19 @@ class User extends Conexion
 
         public function listarTodosDb(){
             $query = "SELECT * FROM usuario";
-            $arr = array();
             try {
                 self::getConexion();
                 $resultado = self::$cnx->prepare($query);
                 $resultado->execute();
                 self::desconectar();
-                foreach ($resultado->fetchAll() as $encontrado) {
-                    $user = new User();
-                    $user->setIdUsuario($encontrado['idUsuario']);
-                    $user->setCorreo($encontrado['correo']);
-                    $user->setNombre($encontrado['nombre']);
-                    $user->setApellido1($encontrado['apellido1']);
-                    $user->setApellido2($encontrado['apellido2']);
-                    $user->setCedulula($encontrado['cedula']);
-                    $user->setTelefono($encontrado['telefono']);
-                    $user->setIdEstado($encontrado['idEstado']);
-                    $arr[] = $user;
-                }
-                return $arr;
-            } catch (PDOException $Exception) {
+             return $resultado->fetchAll(PDO::FETCH_ASSOC);
+            } 
+                catch (PDOException $Exception) {
                 self::desconectar();
-                $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );;
-                return json_encode($error);
+             $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
+             return $error;
+                }
             }
-        }
 
         public function verificarExistenciaDb(){
             $query = "SELECT * FROM usuarios where correo=:correo";
@@ -341,4 +329,6 @@ class User extends Conexion
         }
     /*=====  End of Metodos de la Clase  ======*/  
 }
+//$mode = new User();
+//var_dump($mode->listarTodosDb())
 ?>
