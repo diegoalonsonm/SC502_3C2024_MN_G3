@@ -1,9 +1,8 @@
 $.ajax({
-  url: '../controllers/UserController.php',
+  url: '../controllers/UserController.php?op=listarTabla',
   method: "GET",
   dataType: 'json',
   success: function (data) {
-    console.log(data);
     $('#tbUsuarios').DataTable({
       data: data,
       "columns": [
@@ -14,9 +13,17 @@ $.ajax({
         { "data": "cedula" },
         { "data": "correo" },
         { "data": "telefono" },
-        { "data": "idRol" },
+        { "data": "idRol" 
+          , render: function(data,type,row){
+            if(data==1){
+              return '<span>Administrador</span>'
+            }else{
+              return '<span>Usuario</span>'
+            }
+          }
+        },
         {
-          data: 'idEstado',
+          "data": 'idEstado',
           render: function (data, type, row) {
             if (data == 1) {
               return `<span style="display: inline-block; padding: 5px 10px; border-radius: 5px; background-color: #28a745; color: white; font-size: 12px; font-weight: bold; text-align: center;">Activo</span>`;
