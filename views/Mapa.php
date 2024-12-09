@@ -10,10 +10,26 @@
     
     <body>
     
+
     <?php include './assets/componentes/header.php' ?>
 
+        <header>
+            <nav>
+                <div class="nav-logo">
+                    <a href="index.php"><img src="assets/img/aya_logo.png" alt=""></a>
+                </div>
+                <div class="nav-container">
+                    <ul class="nav-links">
+                        <li class="link"><a href="alertas.php">Alertas</a></li>
+                        <li class="link"><a href="Mapa.php">Mapa</a></li>
+                        <li class="link"><a href="reportes.php">Reportar</a></li>
+                    </ul>
+                </div>
+                <a href="dashboard.php"><button class="btn-login"><i class="fa-solid fa-right-to-bracket"></i></button></a>
+                </nav>
+        </header>
     <section class="Gmap-container">
-    <div class="content">
+    <div class="content" style="width: 1000px;">
         <span class="blur"></span>
         <span class="blur"></span>
         <h1>Mapa del Area</h1>
