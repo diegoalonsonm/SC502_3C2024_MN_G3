@@ -11,28 +11,14 @@
 </head>
 
 <body>
-<header>
-        <nav>
-            <div class="nav-logo">
-                <a href="index.php"><img src="assets/img/aya_logo.png" alt=""></a>
-            </div>
-            <div class="nav-container">
-                <ul class="nav-links">
-                    <li class="link"><a href="alertas.php">Alertas</a></li>
-                    <li class="link"><a href="Mapa.php">Mapa</a></li>
-                    <li class="link"><a href="reportes.php">Reportar</a></li>
-                </ul>
-            </div>
-            <a href="#"><button class="btn-login"><i class="fa-solid fa-right-to-bracket"></i></button></a>
-        </nav>
-    </header>
-    
+    <?php include './assets/componentes/header.php' ?>
+
     <div class="d-flex justify-content-center align-items-center">
         <div class="container mx-auto">
             <div class="row">
                 <div class="col">
                     <div class="card shadow-lg w-50 mx-auto">
-                        <form action="" class="p-5">
+                        <form action="../controllers/loginController.php" method="POST" class="p-5">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <a href="" class="text-dark">
                                     <i class="fa-solid fa-arrow-left"></i>
@@ -40,17 +26,25 @@
                                 <h2 class="flex-grow-1 text-center m-0">Inicia Sesion</h2>
                                 <div style="width: 24px;"></div>
                             </div>
+
+                            <?php
+                            if (isset($_SESSION['error'])) {
+                                echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error'] . '</div>';
+                                unset($_SESSION['error']);
+                            }
+                            ?>
+
                             <div class="mb-3">
-                                <label for="correo" class="form-label">Correo electronico</label>
-                                <input type="email" class="form-control" id="correo" aria-describedby="emailHelp" required>
+                                <label for="correo" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="correo" name="correo" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="password" required>
+                                <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                             <button type="submit" class="btn btn-primary px-4 mb-2">Ingresar</button>
                             <br>
-                            <a href="registro.php">¿Aún no tienes una cuenta? Registrate aquí</a>
+                            <a href="registro.php">¿Aún no tienes una cuenta? Regístrate aquí</a>
                         </form>
                     </div>
                 </div>
@@ -64,4 +58,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
