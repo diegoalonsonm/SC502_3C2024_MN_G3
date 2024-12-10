@@ -8,12 +8,12 @@
 }
 
 /*Boton*/
-.btn-primary {
-    background-color: #425c25;
+.btn-ver-reporte {
+    background-color: #8eb364;
     border: #333;
     transition: background-color 0.3s ease;
 }
 
-.btn-primary:hover {
+.btn-ver-reporte:hover {
     background-color: #8eb364;
 }
