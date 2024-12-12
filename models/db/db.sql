@@ -177,6 +177,7 @@ INSERT INTO alarma (textoAlerta, idEstado, idAlcantarilla, idUsuarioAlertar) VAL
 create table reportes(
 	idReporte int not null PRIMARY KEY AUTO_INCREMENT,
     comentario text not null,
+    fecha datetime not null,
     idUsuario int not null,
     idAlcantarilla int not null,
     idEstado int not null,
@@ -186,14 +187,14 @@ create table reportes(
 );  
 
 -- inserts para la tabla de reportes
-INSERT INTO reportes (comentario, idUsuario, idAlcantarilla, idEstado) VALUES
-('Reporte inicial de inspección en la alcantarilla ALC001.', 1, 1, 1),
-('Revisión técnica realizada, todo en orden en la alcantarilla ALC002.', 2, 2, 1),
-('Se detectó acumulación de desechos en la alcantarilla ALC003, requiere limpieza.', 3, 3, 2),
-('Informe de fallo en el sensor de la alcantarilla ALC004.', 4, 4, 3),
-('Inspección periódica completada en la alcantarilla ALC005, sin novedades.', 5, 5, 1),
-('Se encontró un problema menor en la alcantarilla ALC006, será reparado pronto.', 1, 6, 2),
-('Reporte de posible bloqueo en la alcantarilla ALC007, requiere intervención.', 2, 7, 2),
-('Actualización de estado en la alcantarilla ALC008, todo funciona correctamente.', 3, 8, 1),
-('Se ha detectado daño estructural en la alcantarilla ALC009.', 4, 9, 3),
-('El nivel de agua en la alcantarilla ALC010 está en valores normales.', 5, 10, 1);
+INSERT INTO reportes (comentario, fecha, idUsuario, idAlcantarilla, idEstado) VALUES
+('Reporte inicial de inspección en la alcantarilla ALC001.', '2024-12-12', 1, 1, 1),
+('Revisión técnica realizada, todo en orden en la alcantarilla ALC002.', '2024-12-12', 2, 2, 1),
+('Se detectó acumulación de desechos en la alcantarilla ALC003, requiere limpieza.', '2024-12-12', 3, 3, 2),
+('Informe de fallo en el sensor de la alcantarilla ALC004.', '2024-12-12', 4, 4, 3),
+('Inspección periódica completada en la alcantarilla ALC005, sin novedades.', '2024-12-12', 5, 5, 1),
+('Se encontró un problema menor en la alcantarilla ALC006, será reparado pronto.', '2024-12-12', 1, 6, 2),
+('Reporte de posible bloqueo en la alcantarilla ALC007, requiere intervención.', '2024-12-12', 2, 7, 2),
+('Actualización de estado en la alcantarilla ALC008, todo funciona correctamente.', '2024-12-12', 3, 8, 1),
+('Se ha detectado daño estructural en la alcantarilla ALC009.', '2024-12-12', 4, 9, 3),
+('El nivel de agua en la alcantarilla ALC010 está en valores normales.', '2024-12-12', 5, 10, 1);
