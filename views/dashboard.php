@@ -1,5 +1,5 @@
 <?php
-session_start();
+  session_start();
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ session_start();
         <div class="d-flex justify-content-end dropdown">
           <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <strong><?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Usuario'; ?></strong>
+            <strong><?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Usuario'; ?></strong>      
           </a>
 
           <ul class="dropdown-menu text-small shadow">
