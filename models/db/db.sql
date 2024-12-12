@@ -75,9 +75,11 @@ create TABLE alarma(
 INSERT INTO estado (descrpcion) VALUES ('Activo');
 INSERT INTO estado (descrpcion) VALUES ('Inactivo');
 INSERT INTO estado (descrpcion) VALUES ('Pendiente');
+INSERT INTO estado (descrpcion) VALUES ('En mantenimiento');
 
 INSERT INTO rol (descrpcion) VALUES ('Administrador');
 INSERT INTO rol (descrpcion) VALUES ('Usuario');
+INSERT INTO rol (descrpcion) VALUES ('Mantenimiento');
 
 INSERT INTO usuario (nombre, apellido1, apellido2, cedula, correo, telefono, contrasena, idRol, idEstado) VALUES
                                                                                                               ('Juan', 'Pérez', 'Gómez', '123456789', 'juan.perez@example.com', '1234567890', 'password123', 1, 1),
