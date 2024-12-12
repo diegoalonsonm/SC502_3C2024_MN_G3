@@ -20,7 +20,7 @@
                     <div class="card shadow-lg w-50 mx-auto">
                         <form action="../controllers/loginController.php" method="POST" class="p-5">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <a href="" class="text-dark">
+                                <a href="./index.php" class="text-dark">
                                     <i class="fa-solid fa-arrow-left"></i>
                                 </a>
                                 <h2 class="flex-grow-1 text-center m-0">Inicia Sesion</h2>
