@@ -7,7 +7,7 @@ class LoginModel
     {
         try {
             $conexion = Conexion::conectar();
-            $sql = "SELECT * FROM usuario WHERE correo = :correo";
+            $sql = "SELECT * FROM usuario WHERE correo = :correo and idEstado = 1";
             $stmt = $conexion->prepare($sql);
             $stmt->bindParam(':correo', $correo, PDO::PARAM_STR);
             $stmt->execute();

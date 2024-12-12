@@ -25,7 +25,7 @@ create table usuario(
     telefono varchar(100) not null UNIQUE,
     contrasena varchar(100) not null,
     idRol int not null,
-    idEstado int not null,
+    idEstado int ,
     FOREIGN KEY (idRol) REFERENCES rol(idRol),
     FOREIGN KEY (idEstado) REFERENCES estado (idEstado)
 );
@@ -38,7 +38,7 @@ CREATE TABLE direccion(
     otrasDirecciones varchar(500) not null,
     coordenadasY varchar(255),
     coordenadasX varchar(255),
-    idEstado int not null,
+    idEstado int,
     FOREIGN KEY (idEstado) REFERENCES estado (idEstado)
 );
 
@@ -46,7 +46,7 @@ CREATE table sensor(
     idSensor int not null PRIMARY key AUTO_INCREMENT,
     codigo varchar(100) not null UNIQUE,
     marca varchar(100) not null,
-    idEstado int not null,
+    idEstado int ,
     FOREIGN KEY (idEstado) REFERENCES estado (idEstado)
 );
 
@@ -54,7 +54,7 @@ create table alcantarilla(
     idAlcantarilla int not null PRIMARY KEY AUTO_INCREMENT,
     codigo varchar(100) not null unique,
     idSensor int not null,
-    idEstado int not null,
+    idEstado int ,
     idDireccion int not null,
     FOREIGN KEY (idSensor) REFERENCES sensor (idSensor),
     FOREIGN KEY (idEstado) REFERENCES estado (idEstado),
@@ -64,7 +64,7 @@ create table alcantarilla(
 create TABLE alarma(
     idAlarma int not null PRIMARY key AUTO_INCREMENT,
     textoAlerta varchar(500) not null,
-    idEstado int not null,
+    idEstado int,
     idAlcantarilla int not null,
     idUsuarioAlertar int not null,
     FOREIGN KEY (idEstado) REFERENCES estado (idEstado),
@@ -200,3 +200,67 @@ INSERT INTO reportes (comentario, fecha, idUsuario, idAlcantarilla, idEstado) VA
 ('Actualización de estado en la alcantarilla ALC008, todo funciona correctamente.', '2024-12-12', 3, 8, 1),
 ('Se ha detectado daño estructural en la alcantarilla ALC009.', '2024-12-12', 4, 9, 3),
 ('El nivel de agua en la alcantarilla ALC010 está en valores normales.', '2024-12-12', 5, 10, 1);
+
+-- TRIGGERS DE ESTADO
+
+-- usuario
+DELIMITER $$
+CREATE TRIGGER set_estado_usuario
+BEFORE INSERT
+ON usuario
+FOR EACH ROW
+BEGIN
+    SET NEW.idEstado = 1;
+END$$
+
+DELIMITER ;
+
+-- direccion
+DELIMITER $$
+CREATE TRIGGER set_estado_direccion
+BEFORE INSERT
+ON direccion
+FOR EACH ROW
+BEGIN
+    SET NEW.idEstado = 1;
+END$$
+
+-- alarma
+DELIMITER $$
+CREATE TRIGGER set_estado_alarma
+BEFORE INSERT
+ON alarma
+FOR EACH ROW
+BEGIN
+    SET NEW.idEstado = 1;
+END$$
+
+-- alcantarilla
+DELIMITER $$
+CREATE TRIGGER set_estado_alcantarilla
+BEFORE INSERT
+ON alcantarilla
+FOR EACH ROW
+BEGIN
+    SET NEW.idEstado = 1;
+END$$
+
+-- reportes
+DELIMITER $$
+CREATE TRIGGER set_estado_reportes
+BEFORE INSERT
+ON reportes
+FOR EACH ROW
+BEGIN
+    SET NEW.idEstado = 1;
+END$$
+
+-- sensores
+DELIMITER $$
+CREATE TRIGGER set_estado_sensores
+BEFORE INSERT
+ON sensor
+FOR EACH ROW
+BEGIN
+    SET NEW.idEstado = 1;
+END$$
