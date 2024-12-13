@@ -1,11 +1,13 @@
 <?php
 require_once '../models/User.php';
+
 switch ($_GET["op"]) {
     case 'listarTabla':
         $Usua = new User();
         $Usuario = $Usua->listarTodosDb();
         echo json_encode($Usuario);
-        break;
+    break;
+
     case 'registrarUsuario':
         $nombre = isset($_POST["nombre"]) ? trim($_POST["nombre"]) : "";
         $apellido1 = isset($_POST["apellido1"]) ? trim($_POST["apellido1"]) : "";
@@ -43,9 +45,13 @@ switch ($_GET["op"]) {
         } else {
             echo json_encode("El usuario ya existe.");
         }
-        break;
+    break;
+
+    case "listarEmpleadosActivosInactivos":
+        $user = new User();
+        $empleados = $user->listarEmpleadosActivosInactivos();
+        echo json_encode($empleados);
+
+    break;
 
     }
-
-
-       

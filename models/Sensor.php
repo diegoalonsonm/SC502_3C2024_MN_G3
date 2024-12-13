@@ -64,7 +64,7 @@ class Sensor extends Conexion {
 
     // metodos 
     public static function listarCantidadSensores() {
-        $query = "SELECT s.codigo AS codigo_sensor, a.idSensor as id_sensor, COUNT(*) AS veces_utilizado FROM alcantarilla a JOIN sensor s ON a.idSensor = s.idSensor GROUP BY a.idSensor, s.codigo order by a.idSensor;";
+        $query = "SELECT s.marca, COUNT(s.idSensor) AS cantidad_sensores FROM sensor s GROUP BY s.marca ORDER BY cantidad_sensores DESC LIMIT 3;";
 
         try {
             self::getConexion();

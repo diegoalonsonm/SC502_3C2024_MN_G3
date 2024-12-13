@@ -52,7 +52,7 @@ CREATE table sensor(
 
 create table alcantarilla(
     idAlcantarilla int not null PRIMARY KEY AUTO_INCREMENT,
-    codigo varchar(100) not null unique,
+    codigo varchar(100) unique,
     idSensor int not null,
     idEstado int ,
     idDireccion int not null,
@@ -264,3 +264,21 @@ FOR EACH ROW
 BEGIN
     SET NEW.idEstado = 1;
 END$$
+
+-- TRIGGER DE SECUENICA
+DELIMITER $$
+
+CREATE TRIGGER generar_codigo_alcantarilla
+BEFORE INSERT
+ON alcantarilla
+FOR EACH ROW
+BEGIN
+    DECLARE nuevo_codigo INT;
+
+    SELECT CAST(SUBSTRING(codigo, 4)) + 1 INTO nuevo_codigo FROM alcantarilla 
+    ORDER BY CAST(SUBSTRING(codigo, 4) ) DESC LIMIT 1;
+
+    SET NEW.codigo = CONCAT('ALC', LPAD(nuevo_codigo, 3, '0'));
+END$$
+
+DELIMITER ;

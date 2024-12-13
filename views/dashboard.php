@@ -45,12 +45,8 @@
           </a>
 
           <ul class="dropdown-menu text-small shadow">
-            <li><a class="dropdown-item" href="#">Perfil</a></li>
-            <li><a class="dropdown-item" href="#">Configuración</a></li>
             <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="logout.php">Cerrar sesión</a>
+              <a class="dropdown-item" href="logout.php">Cerrar sesión</a>
             </li>
           </ul>
         </div>
@@ -106,8 +102,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
-  <script src="./assets/js/tablaUsuarios.js"></script>
   <script src="./plugins/jquery/jquery.min.js"></script>
+  <script src="./assets/js/tablaUsuarios.js"></script>
 </body>
 
 </html>

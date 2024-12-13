@@ -5,16 +5,18 @@ $.ajax({
   contentType: false,
   processData: false,
   success: (datos) => {
-    let sensores = JSON.parse(datos);
-    let etiquetas = [];
-    let valores = [];
+    let sensores = JSON.parse(datos)
+    let etiquetas = []
+    let valores = []
+
+    console.log(sensores)
 
     sensores.forEach((sensor) => {
-      etiquetas.push(sensor.codigo_sensor);
-      valores.push(sensor.veces_utilizado);
+      etiquetas.push(sensor.codigo_sensor)
+      valores.push(sensor.veces_utilizado)
     });
 
-    const barras = document.getElementById("graficoBarras");
+    const barras = document.getElementById("graficoBarras")
 
     new Chart(barras, {
       type: "bar",
@@ -40,4 +42,4 @@ $.ajax({
   error: function (e) {
     console.log(e.responseText);
   },
-});
+})

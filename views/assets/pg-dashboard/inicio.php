@@ -14,11 +14,25 @@
         </div>
     </div>
     <div class="row mt-5">
-        <div class="col-6">
-            <?php require_once 'pg-graficos/barras.php'; ?>
+        <div class="col-4">
+            <?php require_once 'pg-graficos/alcantarillas.php'; ?>
         </div>
-        <div class="col-6">
-            <?php require_once 'pg-graficos/pie.php'; ?>
+        <div class="col-4">
+            <?php require_once 'pg-graficos/alcantarillasMante.php'; ?>
+        </div>
+        <div class="col-4">
+            <?php require_once 'pg-graficos/empleados.php'; ?>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-4">
+            <?php require_once 'pg-graficos/reportes.php'; ?>
+        </div>
+        <div class="col-4">
+            <?php require_once 'pg-graficos/reportesUsuario.php'; ?>
+        </div>
+        <div class="col-4">
+            <?php require_once 'pg-graficos/sensores.php'; ?>
         </div>
     </div>
 </div>

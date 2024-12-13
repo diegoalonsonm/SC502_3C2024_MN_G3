@@ -347,7 +347,25 @@ class User extends Conexion
             return $error;
         }
     }
+
+    public static function listarEmpleadosActivosInactivos() {
+        $sql = "SELECT idEstado, COUNT(*) AS cantidad_empleados FROM usuario WHERE idEstado IN (1, 2) AND idRol IN (1, 3) GROUP BY idEstado;";
+
+        try {
+            self::getConexion();
+            $resultado = self::$cnx->prepare($sql);
+            $resultado->execute();
+            self::desconectar();
+            return $resultado->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return $error;
+        }
+    }
+
     /*=====  End of Metodos de la Clase  ======*/
 }
+
 //$mode = new User();
-//var_dump($mode->listarTodosDb())
+//var_dump($mode->listarEmpleadosActivosInactivos());
