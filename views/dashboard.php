@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="./assets/css/mis-reportes.css">
   <link rel="stylesheet" href="./assets/css/ver-reportes.css">
   <link rel="stylesheet" href="./assets/css/editar-sensor.css">
+  <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+
 </head>
 
 <body>
@@ -101,9 +103,10 @@
   <script src="./assets/js/cargar-ubicaciones.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
   <script src="./plugins/jquery/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
   <script src="./assets/js/tablaUsuarios.js"></script>
+  <script src="./assets/js/tablaSensores.js"></script>
 </body>
 
 </html>
