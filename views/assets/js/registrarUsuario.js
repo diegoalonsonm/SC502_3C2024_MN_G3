@@ -28,7 +28,7 @@ function registrarUsuario() {
 
   // Enviar la solicitud al servidor con $.ajax
   $.ajax({
-      url: "ruta_del_servidor.php", // Ruta al archivo PHP que maneja el registro
+      url: "../controllers/UserController.php?op=registrarUsuario", // Ruta al archivo PHP que maneja el registro
       type: "POST",
       data: datos, // Enviar los datos como parámetros
       success: function(response) {
