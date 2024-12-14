@@ -2,15 +2,15 @@
 require_once '../models/Reporte.php';
 
 switch ($_GET["op"]) {
-    case "listarReportesUltimas8Semanas":
+    case "listarReportesUltimas8SemanasGrafico":
         $reporte = new Reporte();
-        $reportes = $reporte->listarReportesUltimas8Semanas();
+        $reportes = $reporte->listarReportesUltimas8SemanasGrafico();
         echo json_encode($reportes);
     break;
 
-    case "listarReportesPorUsuario":
+    case "listarReportesPorUsuarioGrafico":
         $reporte = new Reporte();
-        $reportes = $reporte->listarReportesPorUsuario();
+        $reportes = $reporte->listarReportesPorUsuarioGrafico();
         echo json_encode($reportes);
     break;
 }

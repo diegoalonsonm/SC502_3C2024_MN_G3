@@ -5,8 +5,10 @@
                 Empleados activos/inactivos
             </h4>
         </div>
-        <canvas id="graficoPie"></canvas>
+        <canvas id="graficoBarrasEmpleados"></canvas>
     </div>
 </div>
 
-<script src="./assets/js/graficos/pie.js"></script>
+<script src="./plugins/jquery/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./assets/js/graficos/empleados.js"></script>

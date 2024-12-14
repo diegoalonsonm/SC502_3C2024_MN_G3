@@ -75,8 +75,8 @@ class Reporte extends Conexion {
     }
 
     // metodos
-    public static function listarReportesUltimas8Semanas() {
-        $sql = "SELECT YEAR(fecha) AS anno, WEEK(fecha) AS semana, COUNT(idReporte) AS cantidad_reportes FROM reportes WHERE fecha >= DATE_SUB(CURDATE(), INTERVAL 8 WEEK) GROUP BY anno, semana ORDER BY anno DESC, semana DESC;";
+    public static function listarReportesUltimas8SemanasGrafico() {
+        $sql = "SELECT YEAR(fecha) AS anno, WEEK(fecha) AS semana, COUNT(idReporte) AS cantidad_reportes FROM reportes WHERE fecha >= DATE_SUB(CURDATE(), INTERVAL 7 WEEK) GROUP BY anno, semana ORDER BY anno DESC, semana DESC;";
 
         try {
             self::getConexion();
@@ -94,7 +94,7 @@ class Reporte extends Conexion {
         }
     }
 
-    public static function listarReportesPorUsuario() {
+    public static function listarReportesPorUsuarioGrafico() {
         $sql = "SELECT r.idUsuario, COUNT(r.idReporte) AS cantidad_reportes FROM reportes r GROUP BY r.idUsuario ORDER BY cantidad_reportes DESC LIMIT 3;";
 
         try {

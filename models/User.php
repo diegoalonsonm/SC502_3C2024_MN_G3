@@ -348,8 +348,8 @@ class User extends Conexion
         }
     }
 
-    public static function listarEmpleadosActivosInactivos() {
-        $sql = "SELECT idEstado, COUNT(*) AS cantidad_empleados FROM usuario WHERE idEstado IN (1, 2) AND idRol IN (1, 3) GROUP BY idEstado;";
+    public static function listarEmpleadosActivosInactivosGrafico() {
+        $sql = "SELECT CASE WHEN idEstado = 1 THEN 'Activo' WHEN idEstado = 2 THEN 'Inactivo' END AS estado, COUNT(*) AS cantidad_empleados FROM usuario WHERE idEstado IN (1, 2) AND idRol IN (1, 3) GROUP BY idEstado;";
 
         try {
             self::getConexion();

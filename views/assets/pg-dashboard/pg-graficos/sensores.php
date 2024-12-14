@@ -9,5 +9,6 @@
     </div>
 </div>
 
-<script src="../"></script>
+<script src="./plugins/jquery/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="./assets/js/graficos/sensores.js"></script>

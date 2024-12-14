@@ -66,7 +66,7 @@ class Alcantarilla extends Conexion {
     }
 
     // metodos de la clase
-    public static function listarAlcantarillasProvincia() {
+    public static function listarAlcantarillasProvinciaGrafico() {
         $sql = "SELECT d.provincia, COUNT(a.idAlcantarilla) AS cantidad_alcantarillas FROM alcantarilla a JOIN direccion d ON a.idDireccion = d.idDireccion WHERE a.idEstado = 1 GROUP BY d.provincia ORDER BY cantidad_alcantarillas DESC LIMIT 3;";
 
         try {
@@ -85,7 +85,7 @@ class Alcantarilla extends Conexion {
         }
     }
 
-    public static function listarAlcantarillasEnMantenimiento() {
+    public static function listarAlcantarillasEnMantenimientoGrafico() {
         $sql = "SELECT d.provincia, COUNT(a.idAlcantarilla) AS cantidad_alcantarillas_mantenimiento FROM alcantarilla a JOIN direccion d ON a.idDireccion = d.idDireccion WHERE a.idEstado = 4 GROUP BY d.provincia ORDER BY cantidad_alcantarillas_mantenimiento DESC LIMIT 3;";
 
         try {

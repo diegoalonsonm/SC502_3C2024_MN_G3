@@ -2,15 +2,15 @@
 require_once '../models/Alcantarilla.php';
 
 switch ($_GET["op"]) {
-    case "listarAlcantarillasProvincia":
+    case "listarAlcantarillasProvinciaGrafico":
         $alcantarilla = new Alcantarilla();
-        $alcantarillas = $alcantarilla->listarAlcantarillasProvincia();
+        $alcantarillas = $alcantarilla->listarAlcantarillasProvinciaGrafico();
         echo json_encode($alcantarillas);
     break;
 
-    case "listarAlcantarillasEnMantenimiento":
+    case "listarAlcantarillasEnMantenimientoGrafico":
         $alcantarilla = new Alcantarilla();
-        $alcantarillas = $alcantarilla->listarAlcantarillasEnMantenimiento();
+        $alcantarillas = $alcantarilla->listarAlcantarillasEnMantenimientoGrafico();
         echo json_encode($alcantarillas);
     break;
 }
