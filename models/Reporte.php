@@ -113,9 +113,48 @@ class Reporte extends Conexion {
         }
     }
 
+    public static function listarTodosReportes() {
+        $sql = "select r.idReporte, r.comentario, r.fecha, r.idUsuario, a.codigo as codigo_alcantarilla, e.idEstado from reportes r join alcantarilla a on r.idAlcantarilla = a.idAlcantarilla join estado e on r.idEstado = e.idEstado";
+
+        try {
+            self::getConexion();
+
+            $resultado = self::$cnx->prepare($sql);
+            $resultado->execute();
+
+            self::desconectar();
+            
+            return $resultado->fetchAll();
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );
+            return json_encode($error);
+        }
+    }
+
+    public static function listarMisReportes($idUsuario) {
+        $sql = "SELECT r.idReporte, r.comentario, r.fecha, a.codigo as codigo_alcantarilla, e.idEstado FROM reportes r JOIN alcantarilla a ON r.idAlcantarilla = a.idAlcantarilla JOIN estado e ON r.idEstado = e.idEstado WHERE r.idUsuario = :idUsuario";
+        
+        try {
+            self::getConexion();
+
+            $resultado = self::$cnx->prepare($sql);
+            $resultado->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
+            $resultado->execute();
+
+            self::desconectar();
+            
+            return $resultado->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );
+            return json_encode($error);
+        }
+    }
+
 }
 
 //$reporte = new Reporte();
-//var_dump($reporte->listarReportesPorUsuario());
+//var_dump($reporte->listarMisReportes(10));
 
 ?>
