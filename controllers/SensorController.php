@@ -6,6 +6,11 @@ switch ($_GET["op"]) {
         $sensores = Sensor::listarCantidadSensores();        
         echo json_encode($sensores);
         break;
+
+    case 'listarCantidadSensoresGrafico':
+        $sensores = Sensor::listarCantidadSensoresGrafico();        
+        echo json_encode($sensores);
+        break;
 }
 
 ?>

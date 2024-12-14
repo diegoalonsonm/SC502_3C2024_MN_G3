@@ -1,5 +1,5 @@
 $.ajax({
-  url: "../controllers/SensorController.php?op=listarCantidadSensores",
+  url: "../controllers/SensorController.php?op=listarCantidadSensoresGrafico",
   type: "POST",
   data: {},
   contentType: false,
@@ -9,11 +9,9 @@ $.ajax({
     let etiquetas = []
     let valores = []
 
-    console.log(sensores)
-
     sensores.forEach((sensor) => {
-      etiquetas.push(sensor.codigo_sensor)
-      valores.push(sensor.veces_utilizado)
+      etiquetas.push(sensor.marca)
+      valores.push(sensor.cantidad_sensores)
     });
 
     const barras = document.getElementById("graficoBarras")

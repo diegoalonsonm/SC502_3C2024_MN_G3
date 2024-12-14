@@ -2,21 +2,23 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col">
-      <table id="tbUsuarios" class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Primer Apellido</th>
-            <th scope="col">Segundo Apellido</th>
-            <th scope="col">Cedula</th>
-            <th scope="col">Correo</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Rol</th>
-            <th scope="col">Estado</th>
-          </tr>
-        </thead>
-      </table>
+      <div class="card py-3 px-5" style="background-color: #f0f0f0;">
+        <table id="tbUsuarios" class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Primer Apellido</th>
+              <th scope="col">Segundo Apellido</th>
+              <th scope="col">Cedula</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Rol</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
       <div class="mt-2">
         <button
           class="btn btn-success"

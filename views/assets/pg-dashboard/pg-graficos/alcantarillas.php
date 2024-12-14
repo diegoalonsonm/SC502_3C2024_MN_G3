@@ -9,4 +9,6 @@
     </div>
 </div>
 
-<script src="./assets/js/graficos/pie.js"></script>
+<script src="./plugins/jquery/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./assets/js/graficos/alcantarillasProvincia.js"></script>

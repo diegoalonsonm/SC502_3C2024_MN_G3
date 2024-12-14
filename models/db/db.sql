@@ -282,3 +282,23 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+DELIMITER $$
+
+CREATE TRIGGER generar_codigo_sensor
+BEFORE INSERT
+ON sensor
+FOR EACH ROW
+BEGIN
+    DECLARE nuevo_codigo INT;
+
+    SELECT CAST(SUBSTRING(codigo, 4) AS UNSIGNED) + 1 
+    INTO nuevo_codigo
+    FROM sensor
+    ORDER BY CAST(SUBSTRING(codigo, 4) AS UNSIGNED) DESC
+    LIMIT 1;
+
+    SET NEW.codigo = CONCAT('SEN', LPAD(nuevo_codigo, 3, '0'));
+END$$
+
+DELIMITER ;
