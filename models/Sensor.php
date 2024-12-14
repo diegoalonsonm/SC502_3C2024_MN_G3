@@ -64,7 +64,7 @@ class Sensor extends Conexion {
 
     // metodos 
     public static function listarCantidadSensores() {
-        $query = "SELECT s.marca, COUNT(s.idSensor) AS cantidad_sensores FROM sensor s GROUP BY s.marca ORDER BY cantidad_sensores DESC LIMIT 3;";
+        $query = "SELECT * FROM sensor";
 
         try {
             self::getConexion();
@@ -74,7 +74,7 @@ class Sensor extends Conexion {
 
             self::desconectar();
             
-            return $resultado->fetchAll();
+            return $resultado->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $Exception) {
             self::desconectar();
             $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );
