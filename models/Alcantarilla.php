@@ -104,9 +104,28 @@ class Alcantarilla extends Conexion {
         }
     }
 
+    public static function listarAlcantarillasTabla() {
+        $sql = "select a.idAlcantarilla, a.codigo as codigo_alcantarilla, a.idEstado, a.idDireccion, d.provincia, d.canton, d.distrito, d.otrasDirecciones, d.coordenadasY, d.coordenadasX, s.codigo as codigo_sensor from alcantarilla a join direccion d on a.idDireccion = d.idDireccion join sensor s on a.idSensor = s.idSensor;";
+
+        try {
+            self::getConexion();
+
+            $resultado = self::$cnx->prepare($sql);
+            $resultado->execute();
+
+            self::desconectar();
+            
+            return $resultado->fetchAll();
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );
+            return json_encode($error);
+        }
+    }
+
 }
 
 //$alcantarilla = new Alcantarilla();
-//var_dump($alcantarilla->listarAlcantarillasEnMantenimiento());
+//var_dump($alcantarilla->listarAlcantarillasTabla());
 
 ?>

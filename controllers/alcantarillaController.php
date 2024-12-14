@@ -13,4 +13,10 @@ switch ($_GET["op"]) {
         $alcantarillas = $alcantarilla->listarAlcantarillasEnMantenimientoGrafico();
         echo json_encode($alcantarillas);
     break;
+
+    case "listarAlcantarillasTabla":
+        $alcantarilla = new Alcantarilla();
+        $alcantarillas = $alcantarilla->listarAlcantarillasTabla();
+        echo json_encode($alcantarillas);
+    break;
 }
