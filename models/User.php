@@ -4,8 +4,8 @@ require_once '../config/Conexion.php';
 class User extends Conexion
 {
     /*=============================================
-	=            Atributos de la Clase            =
-	=============================================*/
+    =            Atributos de la Clase            =
+    =============================================*/
     protected static $cnx;
     private $idUsuario = null;
     private $nombre = null;
@@ -21,14 +21,16 @@ class User extends Conexion
     /*=====  End of Atributos de la Clase  ======*/
 
     /*=============================================
-	=            Contructores de la Clase          =
-	=============================================*/
-    public function __construct() {}
+    =            Contructores de la Clase          =
+    =============================================*/
+    public function __construct()
+    {
+    }
     /*=====  End of Contructores de la Clase  ======*/
 
     /*=============================================
-	=            Encapsuladores de la Clase       =
-	=============================================*/
+    =            Encapsuladores de la Clase       =
+    =============================================*/
     public function getCedula()
     {
         return $this->cedula;
@@ -112,8 +114,8 @@ class User extends Conexion
     /*=====  End of Encapsuladores de la Clase  ======*/
 
     /*=============================================
-	=            Metodos de la Clase              =
-	=============================================*/
+    =            Metodos de la Clase              =
+    =============================================*/
     public static function getConexion()
     {
         self::$cnx = Conexion::conectar();
@@ -195,7 +197,7 @@ class User extends Conexion
             $resultado->execute();
 
             self::desconectar();
-            return true; 
+            return true;
         } catch (PDOException $Exception) {
             self::desconectar();
             $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
@@ -280,7 +282,8 @@ class User extends Conexion
             }
         } catch (PDOException $Exception) {
             self::desconectar();
-            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();;
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            ;
             return json_encode($error);
         }
     }
@@ -344,7 +347,25 @@ class User extends Conexion
             return $error;
         }
     }
+
+    public static function listarEmpleadosActivosInactivos() {
+        $sql = "SELECT idEstado, COUNT(*) AS cantidad_empleados FROM usuario WHERE idEstado IN (1, 2) AND idRol IN (1, 3) GROUP BY idEstado;";
+
+        try {
+            self::getConexion();
+            $resultado = self::$cnx->prepare($sql);
+            $resultado->execute();
+            self::desconectar();
+            return $resultado->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return $error;
+        }
+    }
+
     /*=====  End of Metodos de la Clase  ======*/
 }
+
 //$mode = new User();
-//var_dump($mode->listarTodosDb())
+//var_dump($mode->listarEmpleadosActivosInactivos());

@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,16 +41,13 @@
         <div class="d-flex justify-content-end dropdown">
           <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>username</strong>
+            <strong><?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Usuario'; ?></strong>      
           </a>
+
           <ul class="dropdown-menu text-small shadow">
-            <li><a class="dropdown-item" href="#">Perfil</a></li>
-            <li><a class="dropdown-item" href="#">Configuración</a></li>
             <li>
-              <hr class="dropdown-divider">
+              <a class="dropdown-item" href="logout.php">Cerrar sesión</a>
             </li>
-            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
           </ul>
         </div>
 
@@ -84,7 +85,7 @@
               break;
             case 'mantenimiento':
               require './assets/pg-dashboard/mantenimiento.php';
-              break;          
+              break;
             default:
               echo '<h1 class="text-white">Contenido principal</h1><p class="text-white">Aquí va el contenido de la página.</p>';
               break;
@@ -99,10 +100,10 @@
 
   <script src="./assets/js/cargar-ubicaciones.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
-<script src="./assets/js/tablaUsuarios.js"></script>
-<script src="./plugins/jquery/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+  <script src="./plugins/jquery/jquery.min.js"></script>
+  <script src="./assets/js/tablaUsuarios.js"></script>
 </body>
 
 </html>

@@ -25,7 +25,7 @@ create table usuario(
     telefono varchar(100) not null UNIQUE,
     contrasena varchar(100) not null,
     idRol int not null,
-    idEstado int not null,
+    idEstado int ,
     FOREIGN KEY (idRol) REFERENCES rol(idRol),
     FOREIGN KEY (idEstado) REFERENCES estado (idEstado)
 );
@@ -38,7 +38,7 @@ CREATE TABLE direccion(
     otrasDirecciones varchar(500) not null,
     coordenadasY varchar(255),
     coordenadasX varchar(255),
-    idEstado int not null,
+    idEstado int,
     FOREIGN KEY (idEstado) REFERENCES estado (idEstado)
 );
 
@@ -46,15 +46,15 @@ CREATE table sensor(
     idSensor int not null PRIMARY key AUTO_INCREMENT,
     codigo varchar(100) not null UNIQUE,
     marca varchar(100) not null,
-    idEstado int not null,
+    idEstado int ,
     FOREIGN KEY (idEstado) REFERENCES estado (idEstado)
 );
 
 create table alcantarilla(
     idAlcantarilla int not null PRIMARY KEY AUTO_INCREMENT,
-    codigo varchar(100) not null unique,
+    codigo varchar(100) unique,
     idSensor int not null,
-    idEstado int not null,
+    idEstado int ,
     idDireccion int not null,
     FOREIGN KEY (idSensor) REFERENCES sensor (idSensor),
     FOREIGN KEY (idEstado) REFERENCES estado (idEstado),
@@ -64,7 +64,7 @@ create table alcantarilla(
 create TABLE alarma(
     idAlarma int not null PRIMARY key AUTO_INCREMENT,
     textoAlerta varchar(500) not null,
-    idEstado int not null,
+    idEstado int,
     idAlcantarilla int not null,
     idUsuarioAlertar int not null,
     FOREIGN KEY (idEstado) REFERENCES estado (idEstado),
@@ -75,9 +75,11 @@ create TABLE alarma(
 INSERT INTO estado (descrpcion) VALUES ('Activo');
 INSERT INTO estado (descrpcion) VALUES ('Inactivo');
 INSERT INTO estado (descrpcion) VALUES ('Pendiente');
+INSERT INTO estado (descrpcion) VALUES ('En mantenimiento');
 
 INSERT INTO rol (descrpcion) VALUES ('Administrador');
 INSERT INTO rol (descrpcion) VALUES ('Usuario');
+INSERT INTO rol (descrpcion) VALUES ('Mantenimiento');
 
 INSERT INTO usuario (nombre, apellido1, apellido2, cedula, correo, telefono, contrasena, idRol, idEstado) VALUES
                                                                                                               ('Juan', 'Pérez', 'Gómez', '123456789', 'juan.perez@example.com', '1234567890', 'password123', 1, 1),
@@ -172,3 +174,111 @@ INSERT INTO alarma (textoAlerta, idEstado, idAlcantarilla, idUsuarioAlertar) VAL
                                                                                  ('Obstrucción detectada en la alcantarilla ALC003', 1, 3, 3),
                                                                                  ('Fallo en el sensor de la alcantarilla ALC004', 3, 4, 4),
                                                                                  ('Revisión programada para la alcantarilla ALC005', 1, 5, 5);
+
+-- tabla de reportes
+create table reportes(
+	idReporte int not null PRIMARY KEY AUTO_INCREMENT,
+    comentario text not null,
+    fecha datetime not null,
+    idUsuario int not null,
+    idAlcantarilla int not null,
+    idEstado int not null,
+    foreign key (idUsuario) references usuario (idUsuario),
+    foreign key (idAlcantarilla) references alcantarilla (idAlcantarilla),
+    foreign key (idEstado) references estado (idEstado)  
+);  
+
+-- inserts para la tabla de reportes
+INSERT INTO reportes (comentario, fecha, idUsuario, idAlcantarilla, idEstado) VALUES
+('Reporte inicial de inspección en la alcantarilla ALC001.', '2024-12-12', 1, 1, 1),
+('Revisión técnica realizada, todo en orden en la alcantarilla ALC002.', '2024-12-12', 2, 2, 1),
+('Se detectó acumulación de desechos en la alcantarilla ALC003, requiere limpieza.', '2024-12-12', 3, 3, 2),
+('Informe de fallo en el sensor de la alcantarilla ALC004.', '2024-12-12', 4, 4, 3),
+('Inspección periódica completada en la alcantarilla ALC005, sin novedades.', '2024-12-12', 5, 5, 1),
+('Se encontró un problema menor en la alcantarilla ALC006, será reparado pronto.', '2024-12-12', 1, 6, 2),
+('Reporte de posible bloqueo en la alcantarilla ALC007, requiere intervención.', '2024-12-12', 2, 7, 2),
+('Actualización de estado en la alcantarilla ALC008, todo funciona correctamente.', '2024-12-12', 3, 8, 1),
+('Se ha detectado daño estructural en la alcantarilla ALC009.', '2024-12-12', 4, 9, 3),
+('El nivel de agua en la alcantarilla ALC010 está en valores normales.', '2024-12-12', 5, 10, 1);
+
+-- TRIGGERS DE ESTADO
+
+-- usuario
+DELIMITER $$
+CREATE TRIGGER set_estado_usuario
+BEFORE INSERT
+ON usuario
+FOR EACH ROW
+BEGIN
+    SET NEW.idEstado = 1;
+END$$
+
+DELIMITER ;
+
+-- direccion
+DELIMITER $$
+CREATE TRIGGER set_estado_direccion
+BEFORE INSERT
+ON direccion
+FOR EACH ROW
+BEGIN
+    SET NEW.idEstado = 1;
+END$$
+
+-- alarma
+DELIMITER $$
+CREATE TRIGGER set_estado_alarma
+BEFORE INSERT
+ON alarma
+FOR EACH ROW
+BEGIN
+    SET NEW.idEstado = 1;
+END$$
+
+-- alcantarilla
+DELIMITER $$
+CREATE TRIGGER set_estado_alcantarilla
+BEFORE INSERT
+ON alcantarilla
+FOR EACH ROW
+BEGIN
+    SET NEW.idEstado = 1;
+END$$
+
+-- reportes
+DELIMITER $$
+CREATE TRIGGER set_estado_reportes
+BEFORE INSERT
+ON reportes
+FOR EACH ROW
+BEGIN
+    SET NEW.idEstado = 1;
+END$$
+
+-- sensores
+DELIMITER $$
+CREATE TRIGGER set_estado_sensores
+BEFORE INSERT
+ON sensor
+FOR EACH ROW
+BEGIN
+    SET NEW.idEstado = 1;
+END$$
+
+-- TRIGGER DE SECUENICA
+DELIMITER $$
+
+CREATE TRIGGER generar_codigo_alcantarilla
+BEFORE INSERT
+ON alcantarilla
+FOR EACH ROW
+BEGIN
+    DECLARE nuevo_codigo INT;
+
+    SELECT CAST(SUBSTRING(codigo, 4)) + 1 INTO nuevo_codigo FROM alcantarilla 
+    ORDER BY CAST(SUBSTRING(codigo, 4) ) DESC LIMIT 1;
+
+    SET NEW.codigo = CONCAT('ALC', LPAD(nuevo_codigo, 3, '0'));
+END$$
+
+DELIMITER ;

@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="card-title">
             <h4>
-                Estadisticas de alcantarillas
+                Cantidad de reportes en los ultimos dos meses
             </h4>
         </div>
         <canvas id="graficoPie"></canvas>

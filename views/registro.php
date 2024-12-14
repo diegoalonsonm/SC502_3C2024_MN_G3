@@ -13,66 +13,69 @@
 </head>
 
 <body>
-<?php include './assets/componentes/header.php' ?>
+    <?php include './assets/componentes/header.php' ?>
 
-    
-<div class="d-flex justify-content-center align-items-center">
-    <div class="container mx-auto">
-        <div class="row">
-            <div class="col">
-                <div class="card shadow-lg w-50 mx-auto">
-                    <form method="POST" id="RegistroUsuario" class="p-5">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <a href="" class="text-dark">
-                                <i class="fa-solid fa-arrow-left"></i>
-                            </a>
-                            <h2 class="flex-grow-1 text-center m-0">Crear una cuenta</h2>
-                            <div style="width: 24px;"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="apellido1" class="form-label">Primer Apellido</label>
-                            <input type="text" class="form-control" id="apellido1" name="apellido1" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="apellido2" class="form-label">Segundo Apellido</label>
-                            <input type="text" class="form-control" id="apellido2" name="apellido2"required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cedula" class="form-label">Cedula</label>
-                            <input type="text" class="form-control" id="cedula" name="cedula" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="numero" class="form-label">Numero telefonico</label>
-                            <input type="text" class="form-control" id="numero" name="numero" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="correo" class="form-label">Correo electronico</label>
-                            <input type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="contrasena" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="contrasena" name="contrasena" required>
-                        </div>
-                        <button type="submit" id="btnRegistrar" name=btnRegistrar class="btn btn-primary px-4 mb-2">Registrar</button>
-                        <br>
-                        <a href="login.php">¿Ya tienes una cuenta? Inicia sesion</a>
-                    </form>
+
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="container mx-auto">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow-lg w-50 mx-auto">
+                        <form method="POST" id="RegistroUsuario" class="p-5">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <a href="" class="text-dark">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </a>
+                                <h2 class="flex-grow-1 text-center m-0">Crear una cuenta</h2>
+                                <div style="width: 24px;"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="apellido1" class="form-label">Primer Apellido</label>
+                                <input type="text" class="form-control" id="apellido1" name="apellido1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="apellido2" class="form-label">Segundo Apellido</label>
+                                <input type="text" class="form-control" id="apellido2" name="apellido2" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cedula" class="form-label">Cedula</label>
+                                <input type="text" class="form-control" id="cedula" name="cedula" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="numero" class="form-label">Numero telefonico</label>
+                                <input type="text" class="form-control" id="numero" name="numero" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="correo" class="form-label">Correo electronico</label>
+                                <input type="email" class="form-control" id="correo" name="correo"
+                                    aria-describedby="emailHelp" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contrasena" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+                            </div>
+                            <button type="submit" id="btnRegistrar" name=btnRegistrar
+                                class="btn btn-primary px-4 mb-2">Registrar</button>
+                            <br>
+                            <a href="login.php">¿Ya tienes una cuenta? Inicia sesion</a>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="copyright">
-    Copyright © 2024 Alcantarillado Costa Rica. All Rights Reserved.
-</div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-<script src="./assets/js/registrarUsuario.js"></script>
+    <div class="copyright">
+        Copyright © 2024 Alcantarillado Costa Rica. All Rights Reserved.
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="./assets/js/registrarUsuario.js"></script>
 </body>
+
 </html>
