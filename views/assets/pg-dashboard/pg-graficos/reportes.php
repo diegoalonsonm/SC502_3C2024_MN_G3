@@ -2,11 +2,13 @@
     <div class="card-body">
         <div class="card-title">
             <h4>
-                Cantidad de reportes en los ultimos dos meses
+                Cantidad de reportes en las ultimas 8 semanas
             </h4>
         </div>
-        <canvas id="graficoPie"></canvas>
+        <canvas id="graficoLineaReportes"></canvas>
     </div>
 </div>
 
-<script src="./assets/js/graficos/pie.js"></script>
+<script src="./plugins/jquery/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./assets/js/graficos/reportes8semanas.js"></script>

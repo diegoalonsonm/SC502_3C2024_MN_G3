@@ -47,9 +47,9 @@ switch ($_GET["op"]) {
         }
     break;
 
-    case "listarEmpleadosActivosInactivos":
+    case "listarEmpleadosActivosInactivosGrafico":
         $user = new User();
-        $empleados = $user->listarEmpleadosActivosInactivos();
+        $empleados = $user->listarEmpleadosActivosInactivosGrafico();
         echo json_encode($empleados);
 
     break;

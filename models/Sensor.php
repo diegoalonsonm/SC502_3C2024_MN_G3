@@ -82,9 +82,28 @@ class Sensor extends Conexion {
         }
     }
 
+    public static function listarCantidadSensoresGrafico() {
+        $query = "SELECT s.marca, COUNT(s.idSensor) AS cantidad_sensores FROM sensor s GROUP BY s.marca ORDER BY cantidad_sensores DESC LIMIT 3;";
+
+        try {
+            self::getConexion();
+
+            $resultado = self::$cnx->prepare($query);
+            $resultado->execute();
+
+            self::desconectar();
+            
+            return $resultado->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );
+            return json_encode($error);
+        }
+    }
+
 }
 
 //$sensor = new Sensor();
-//var_dump($sensor->listarCantidadSensores());
+//var_dump($sensor->listarCantidadSensoresGrafico());
 
 ?>

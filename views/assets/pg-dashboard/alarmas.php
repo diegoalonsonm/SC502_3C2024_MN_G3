@@ -2,51 +2,18 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col">
-      <div class="card mb-2">
-        <div class="card-body">
-          <p>Id:</p>
-          <p>Estado:</p>
-          <p># Sensor:</p>
-          <p># Alcantarilla:</p>
-          <div class="mt-2">
-            <a class="btn btn-primary" href="#">Ver más</a>
-          </div>
-        </div>
-      </div>
-      <div class="card mb-2">
-        <div class="card-body">
-          <p>Id:</p>
-          <p>Estado:</p>
-          <p># Sensor:</p>
-          <p># Alcantarilla:</p>
-          <div class="mt-2">
-            <a class="btn btn-primary" href="#">Ver más</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card mb-2">
-        <div class="card-body">
-          <p>Id:</p>
-          <p>Estado:</p>
-          <p># Sensor:</p>
-          <p># Alcantarilla:</p>
-          <div class="mt-2">
-            <a class="btn btn-primary" href="#">Ver más</a>
-          </div>
-        </div>
-      </div>
-      <div class="card mb-2">
-        <div class="card-body">
-          <p>Id:</p>
-          <p>Estado:</p>
-          <p># Sensor:</p>
-          <p># Alcantarilla:</p>
-          <div class="mt-2">
-            <a class="btn btn-primary" href="#">Ver más</a>
-          </div>
-        </div>
+      <div class="card p-5" style="background-color: #f0f0f0;">      
+        <table id="tbAlarmas" class="table table-striped table-hover shadow">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Mensaje</th>
+              <th scope="col">Usuario a Alertar</th>
+              <th scope="col">Alcantarilla</th>              
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+        </table>
       </div>
     </div>
   </div>
