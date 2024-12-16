@@ -6,6 +6,8 @@
         <title>Alcantarillado Costa Rica</title>
         <link rel="stylesheet" href="assets/css/styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="icon" href="./assets/img/aya_logo.ico" type="image/x-icon">
+
     </head>
     
     <body>

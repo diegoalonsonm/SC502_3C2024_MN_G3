@@ -12,12 +12,14 @@
         </div>
 
         <?php
-        session_start();
-        if (isset($_SESSION['idUsuario'])) {
-            echo '<a href="dashboard.php"><button class="btn-login">Dashboard</button></a>';
-        } else {
-            echo '<a href="login.php"><button class="btn-login"><i class="fa-solid fa-right-to-bracket"></i></button></a>';
-        }
-        ?>
+ if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (isset($_SESSION['idUsuario'])) {
+    echo '<a href="dashboard.php"><button class="btn-login">Dashboard</button></a>';
+} else {
+    echo '<a href="login.php"><button class="btn-login"><i class="fa-solid fa-right-to-bracket"></i></button></a>';
+}?>
     </nav>
 </header>

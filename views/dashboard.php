@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="./assets/css/ver-reportes.css">
   <link rel="stylesheet" href="./assets/css/editar-sensor.css">
   <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
-
+  <link rel="icon" href="./assets/img/aya_logo.ico" type="image/x-icon">
 </head>
 
 <body>
