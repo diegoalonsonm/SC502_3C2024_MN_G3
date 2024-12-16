@@ -26,4 +26,22 @@ switch ($_GET["op"]) {
         $reportes = $reporte->listarMisReportes($_SESSION['idUsuario']);        
         echo json_encode($reportes);
     break;
+
+    case "crearReporte":
+        $comentario = isset($_POST["comentario"]) ? $_POST["comentario"] : "";
+        $alcantarilla = isset($_POST["alcantarilla"]) ? $_POST["alcantarilla"] : "";
+        $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
+        $usuario = isset($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : "";
+
+        $reporte = new Reporte();
+
+        $reporte->setComentario($comentario);
+        $reporte->setIdAlcantarilla($alcantarilla);
+        $reporte->setFecha($fecha);
+        $reporte->setIdUsuario($usuario);
+
+        $resultado = $reporte->crearReporte();
+
+        echo 'Reporte creado correctamente.';
+        break;
 }

@@ -14,22 +14,21 @@ $("form").submit((e) => {
         type: 'POST',
         data: { nombre, apellido1, apellido2, correo, contrasena, telefono, cedula },
         success: (data) => {
-            console.log(data, 'data')
-            //Swal.fire({
-            //    icon: 'success',
-            //    title: 'Usuario registrado',
-           //     showConfirmButton: false,
-            //    timer: 1500
-            //})
-            //setTimeout(() => {
-            //    window.location.href = 'login.php'
-            //}, 1500)
+            Swal.fire({
+                icon: 'success',
+                title: 'Usuario registrado',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            setTimeout(() => {
+                window.location.href = 'login.php'
+            }, 1500)
         },
         error: (e) => {
-            //Swal.fire({
-            //    icon: 'error',
-            //    title: 'Error al registrar el usuario'
-            //})
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al registrar el usuario'
+            })
             console.log(e)
         }
     })

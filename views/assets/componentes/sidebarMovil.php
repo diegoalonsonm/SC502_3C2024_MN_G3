@@ -8,7 +8,7 @@
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a href="index.php" class="nav-link text-white text-bold">
-                    Inicio
+                    Landing page
                 </a>
             </li>
             <?php if ($_SESSION['idRol'] == 1): ?>
