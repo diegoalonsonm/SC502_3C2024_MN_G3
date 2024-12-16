@@ -92,6 +92,9 @@
             case 'mantenimiento':
               require './assets/pg-dashboard/mantenimiento.php';
               break;
+            case 'mis-mantenimientos':
+                require './assets/pg-dashboard/mis-mantenimientos.php';
+                break;
             default:
             require './assets/pg-dashboard/inicio.php';
               break;

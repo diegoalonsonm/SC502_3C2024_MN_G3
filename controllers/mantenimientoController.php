@@ -28,11 +28,11 @@ switch ($_GET["op"]) {
     break;
 
     case "agregarNuevoTiquete":
-        $fechaInicio = $_POST['fechaInicio'];
-        $fechaFin = $_POST['fechaFin'];
-        $instrucciones = $_POST['instrucciones'];
-        $idUsuario = $_POST['idUsuario'];
-        $idAlcantarilla = $_POST['idAlcantarilla'];
+        $fechaInicio = isset($_POST['fechaInicio']) ? $_POST['fechaInicio'] : null;
+        $fechaFin = isset($_POST['fechaFin']) ? $_POST['fechaFin'] : null;
+        $instrucciones = isset($_POST['instrucciones']) ? $_POST['instrucciones'] : null;
+        $idUsuario = isset($_POST['idUsuario']) ? $_POST['idUsuario'] : null;
+        $idAlcantarilla = isset($_POST['idAlcantarilla']) ? $_POST['idAlcantarilla'] : null;
 
         $mant = new Mantenimiento();
 
@@ -44,7 +44,26 @@ switch ($_GET["op"]) {
 
         $mant->agregarNuevoTiquete();
 
-        echo "Se ha creado correctamente un nuevo tiquete";        
+        echo "Se ha creado correctamente un nuevo tiquete";
+        //echo json_encode(array(
+        //    "fechaInicio" => $fechaInicio,
+        //    "fechaFin" => $fechaFin,
+        //    "instrucciones" => $instrucciones,
+        //    "idUsuario" => $idUsuario,
+        //    "idAlcantarilla" => $idAlcantarilla
+        //));
     break;
+
+    case "finalizarMantenimiento":
+        $idMantenimiento = isset($_POST['idMantenimiento']) ? $_POST['idMantenimiento'] : null;
+
+        $mant = new Mantenimiento();
+        $mant->setIdMantenimiento($idMantenimiento);
+
+        $mant->finalizarMantenimiento();
+
+        echo "Se ha finalizado correctamente el mantenimiento";
+        
+        break;    
 
 }

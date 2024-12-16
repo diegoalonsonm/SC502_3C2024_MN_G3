@@ -162,7 +162,7 @@ class Mantenimiento extends Conexion {
         }
     }
 
-    public static function agregarNuevoTiquete() {
+    public function agregarNuevoTiquete() {
         $sql = "insert into mantenimiento (fechaInicio, fechaFin, instrucciones, idUsuario, 
             idAlcantarilla) values (:fechaInicio, :fechaFin, :instrucciones, :idUsuario, 
             :idAlcantarilla)";
@@ -183,6 +183,30 @@ class Mantenimiento extends Conexion {
             $resultado->bindParam(':instrucciones', $instrucciones, PDO::PARAM_STR);
             $resultado->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
             $resultado->bindParam(':idAlcantarilla', $idAlcantarilla, PDO::PARAM_INT);
+
+            $resultado->execute();
+
+            self::desconectar();
+
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );;
+          return json_encode($error);
+        }
+    }
+
+    public function finalizarMantenimiento() {
+        $sql = "update mantenimiento set idEstado = 5 where idMantenimiento = :idMantenimiento";
+
+        try {
+            self::getConexion();
+
+            $idMantenimiento = $this->getIdMantenimiento();
+
+            $resultado = self::$cnx->prepare($sql);
+
+            $resultado->bindParam(':idMantenimiento', $idMantenimiento, PDO::PARAM_INT);
+
             $resultado->execute();
 
             self::desconectar();

@@ -249,7 +249,7 @@ BEFORE INSERT
 ON mantenimiento
 FOR EACH ROW
 BEGIN
-    SET NEW.idEstado = 1;
+    SET NEW.idEstado = 3;
 END$$
 
 DELIMITER ;
@@ -343,3 +343,16 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+
+DELIMITER //
+
+CREATE TRIGGER actualizar_estado_alcantarilla
+AFTER INSERT ON mantenimiento
+FOR EACH ROW
+BEGIN
+    UPDATE alcantarilla
+    SET idEstado = 4
+    WHERE idAlcantarilla = NEW.idAlcantarilla;
+END //
+
+DELIMITER ;

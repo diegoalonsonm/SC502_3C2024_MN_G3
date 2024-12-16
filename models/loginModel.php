@@ -15,7 +15,7 @@ class LoginModel
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($usuario) {
-                if ($password == $usuario['contrasena']) {
+                if (password_verify($password, $usuario['contrasena'])) {
                     return $usuario;
                 } else {
                     return null;

@@ -1,53 +1,36 @@
-function registrarUsuario() {
-  // Obtener los valores de los campos del formulario
-  const nombre = $("#nombre").val().trim();
-  const apellido1 = $("#apellido1").val().trim();
-  const apellido2 = $("#apellido2").val().trim();
-  const telefono = $("#telefono").val().trim();
-  const cedula = $("#cedula").val().trim();
-  const correo = $("#correo").val().trim();
-  const contrasena = $("#contrasena").val().trim();
+$("form").submit((e) => {
+    e.preventDefault()
+    
+    const nombre = $('#nombre').val()
+    const apellido1 = $('#apellido1').val()
+    const apellido2 = $('#apellido2').val()
+    const correo = $('#correo').val()
+    const contrasena = $('#contrasena').val()
+    const telefono = $('#numero').val()
+    const cedula = $('#cedula').val()
 
-  // Verificar que los campos no estén vacíos
-  if (!nombre || !apellido1 || !apellido2 || !telefono || !cedula || !correo || !contrasena) {
-      alert("Por favor, complete todos los campos.");
-      return;
-  }
-
-  // Crear un objeto con los datos
-  const datos = {
-      nombre: nombre,
-      apellido1: apellido1,
-      apellido2: apellido2,
-      telefono: telefono,
-      cedula: cedula,
-      correo: correo,
-      contrasena: contrasena,
-      action: "registrarUsuario" // Acción para el servidor
-  };
-
-  // Enviar la solicitud al servidor con $.ajax
-  $.ajax({
-      url: "../controllers/UserController.php?op=registrarUsuario", // Ruta al archivo PHP que maneja el registro
-      type: "POST",
-      data: datos, // Enviar los datos como parámetros
-      success: function(response) {
-          // Manejo de la respuesta del servidor
-          if (response === true) {
-              alert("Usuario registrado exitosamente.");
-          } else if (response === "El usuario ya existe.") {
-              alert("Este usuario ya está registrado.");
-          } else {
-              alert("Hubo un error al registrar el usuario.");
-          }
-      },
-      error: function(xhr, status, error) {
-          // Manejo de errores
-          console.error("Error:", error);
-          alert("Hubo un problema con la solicitud.");
-      }
-  });
-}
-
-// Asignar la función al evento de un botón de registro
-$("#registrarBtn").on("click", registrarUsuario);
+    $.ajax({
+        url: '../controllers/UserController.php?op=registroDesdeLanding&nombre=' + nombre + '&apellido1=' + apellido1 + '&apellido2=' + apellido2 + '&correo=' + correo + '&contrasena=' + contrasena + '&telefono=' + telefono + '&cedula=' + cedula,
+        type: 'POST',
+        data: { nombre, apellido1, apellido2, correo, contrasena, telefono, cedula },
+        success: (data) => {
+            console.log(data, 'data')
+            //Swal.fire({
+            //    icon: 'success',
+            //    title: 'Usuario registrado',
+           //     showConfirmButton: false,
+            //    timer: 1500
+            //})
+            //setTimeout(() => {
+            //    window.location.href = 'login.php'
+            //}, 1500)
+        },
+        error: (e) => {
+            //Swal.fire({
+            //    icon: 'error',
+            //    title: 'Error al registrar el usuario'
+            //})
+            console.log(e)
+        }
+    })
+})
