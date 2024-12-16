@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['idUsuario'])) {
+  header('Location: login.php');
+}
+?>
+
 <h1 class="text-center text-bold text-white">Alcantarillas</h1>
 <div class="container mt-4">
   <div class="row">

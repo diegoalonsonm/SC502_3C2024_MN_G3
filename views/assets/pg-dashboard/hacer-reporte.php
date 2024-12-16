@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['idUsuario'])) {
+  header('Location: login.php');
+}
+?>
+
 <section class="hacer-reporte-form">
   <div class="container mt-4">
     <h2>Llena el formulario para realizar tu reporte:</h2>

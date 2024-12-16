@@ -1,5 +1,9 @@
 <?php
   session_start();
+
+  if (!isset($_SESSION['idUsuario'])) {
+    header('Location: login.php');
+  }
 ?>
 
 <!DOCTYPE html>
@@ -105,12 +109,15 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="./assets/js/tablaUsuarios.js"></script>
   <script src="./assets/js/tablaSensores.js"></script>
   <script src="./assets/js/tablaReportes.js"></script>
   <script src="./assets/js/tablaMisReportes.js"></script>
   <script src="./assets/js/tablaAlarmas.js"></script>
-  <script src="./assets/js/tablaAlcantarillas.js"></script>
+  <script src="./assets/js/tablaAlcantarillas.js"></script>  
+  <script src="./assets/js/mantenimiento.js"></script>
+  
 </body>
 
 </html>
