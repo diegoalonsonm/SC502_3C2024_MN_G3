@@ -27,8 +27,16 @@ $.ajax({
                 }
             ]
         })
-    },
+     if ($('#tbMisReportes tbody tr').length === 0) {
+      $('#btnCrearReporteIncio').show();
+  } else {
+      $('#btnCrearReporteIncio').hide();
+  }
+  },
     error: function (error) {
         console.log(error)
     }
 })
+
+
+     
