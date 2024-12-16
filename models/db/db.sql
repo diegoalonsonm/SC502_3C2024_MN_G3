@@ -201,6 +201,33 @@ INSERT INTO reportes (comentario, fecha, idUsuario, idAlcantarilla, idEstado) VA
 ('Se ha detectado daño estructural en la alcantarilla ALC009.', '2024-12-12', 4, 9, 3),
 ('El nivel de agua en la alcantarilla ALC010 está en valores normales.', '2024-12-12', 5, 10, 1);
 
+-- tabla de mantenimiento
+create table mantenimiento(
+    idMantenimiento int not null PRIMARY KEY AUTO_INCREMENT,
+    fechaInicio datetime not null,
+    fechaFin datetime not null,
+    instrucciones text not null,
+    idUsuario int not null,
+    idAlcantarilla int not null,
+    idEstado int,
+    foreign key (idUsuario) references usuario (idUsuario),
+    foreign key (idAlcantarilla) references alcantarilla (idAlcantarilla),
+    foreign key (idEstado) references estado (idEstado)  
+);
+
+-- inserts para la tabla de mantenimiento
+INSERT INTO mantenimiento (fechaInicio, fechaFin, instrucciones, idUsuario, idAlcantarilla) VALUES
+('2024-12-12', '2024-12-13', 'Limpieza de alcantarilla ALC001.', 4, 1),
+('2024-12-12', '2024-12-13', 'Revisión técnica en alcantarilla ALC002.', 4, 2),
+('2024-12-12', '2024-12-13', 'Mantenimiento preventivo en alcantarilla ALC003.', 15, 3),
+('2024-12-12', '2024-12-13', 'Reparación de sensor en alcantarilla ALC004.', 15, 4),
+('2024-12-12', '2024-12-13', 'Inspección de rutina en alcantarilla ALC005.', 16, 5),
+('2024-12-12', '2024-12-13', 'Reparación de alcantarilla ALC006.', 16, 6),
+('2024-12-12', '2024-12-13', 'Limpieza de alcantarilla ALC007.', 17, 7),
+('2024-12-12', '2024-12-13', 'Revisión técnica en alcantarilla ALC008.', 17, 8),
+('2024-12-12', '2024-12-13', 'Mantenimiento preventivo en alcantarilla ALC009.', 18, 9),
+('2024-12-12', '2024-12-13', 'Reparación de sensor en alcantarilla ALC010.', 18, 10);
+
 -- TRIGGERS DE ESTADO
 
 -- usuario
@@ -211,6 +238,18 @@ ON usuario
 FOR EACH ROW
 BEGIN
     SET NEW.idEstado = 1;
+END$$
+
+DELIMITER ;
+
+-- mantenimiento
+DELIMITER $$
+CREATE TRIGGER set_estado_mantenimiento
+BEFORE INSERT
+ON mantenimiento
+FOR EACH ROW
+BEGIN
+    SET NEW.idEstado = 3;
 END$$
 
 DELIMITER ;
@@ -300,5 +339,20 @@ BEGIN
 
     SET NEW.codigo = CONCAT('SEN', LPAD(nuevo_codigo, 3, '0'));
 END$$
+
+DELIMITER ;
+
+DELIMITER $$
+
+DELIMITER //
+
+CREATE TRIGGER actualizar_estado_alcantarilla
+AFTER INSERT ON mantenimiento
+FOR EACH ROW
+BEGIN
+    UPDATE alcantarilla
+    SET idEstado = 4
+    WHERE idAlcantarilla = NEW.idAlcantarilla;
+END //
 
 DELIMITER ;

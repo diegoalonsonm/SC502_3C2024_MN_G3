@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link rel="icon" href="./assets/img/aya_logo.ico" type="image/x-icon">
-
 </head>
 
 <body>
@@ -22,9 +21,9 @@
             <div class="row">
                 <div class="col">
                     <div class="card shadow-lg w-50 mx-auto">
-                        <form method="POST" id="RegistroUsuario" class="p-5">
+                        <form class="p-5">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <a href="" class="text-dark">
+                                <a href="login.php" class="text-dark">
                                     <i class="fa-solid fa-arrow-left"></i>
                                 </a>
                                 <h2 class="flex-grow-1 text-center m-0">Crear una cuenta</h2>
@@ -59,8 +58,7 @@
                                 <label for="contrasena" class="form-label">Contraseña</label>
                                 <input type="password" class="form-control" id="contrasena" name="contrasena" required>
                             </div>
-                            <button type="submit" id="btnRegistrar" name=btnRegistrar
-                                class="btn btn-primary px-4 mb-2">Registrar</button>
+                            <button type="submit" class="btn btn-primary px-4 mb-2">Registrar</button>
                             <br>
                             <a href="login.php">¿Ya tienes una cuenta? Inicia sesion</a>
                         </form>

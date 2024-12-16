@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['idUsuario'])) {
+  header('Location: login.php');
+}
+?>
+
 <style>
 .card-container {
     display: flex;

@@ -2,6 +2,15 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col">
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarUsuario">
+        Agregar Usuario
+      </button>
+    </div>
+  </div>
+</div>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
       <div class="card py-3 px-5" style="background-color: #f0f0f0;">
         <table id="tbUsuarios" class="table table-hover">
           <thead>
@@ -20,13 +29,7 @@
         </table>
       </div>
       <div class="mt-2">
-        <button
-          class="btn btn-success"
-          data-bs-toggle="modal"
-          data-bs-target="#agregarUsuario"
-        >
-          Agregar Usuario
-        </button>
+        
 
         <div
           class="modal fade"
