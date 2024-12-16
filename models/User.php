@@ -147,15 +147,34 @@ class User extends Conexion
         $query = "SELECT * FROM usuarios where cedula=:cedula";
         try {
             self::getConexion();
+
             $resultado = self::$cnx->prepare($query);
+
             $cedula = $this->getCedula();
+
             $resultado->bindParam(":cedula", $cedula, PDO::PARAM_STR);
             $resultado->execute();
+
             self::desconectar();
+
             $encontrado = false;
+            $arr = array();
+
             foreach ($resultado->fetchAll() as $reg) {
-                $encontrado = true;
+                $arr[] = $reg['idUsuario'];
+                $arr[] = $reg['nombre'];
+                $arr[] = $reg['apellido1'];
+                $arr[] = $reg['apellido2'];
+                $arr[] = $reg['cedula'];
+                $arr[] = $reg['correo'];
+                $arr[] = $reg['telefono'];
+                $arr[] = $reg['contrasena'];
+                $arr[] = $reg['idEstado'];
+                $arr[] = $reg['idRol'];
             }
+
+            return $arr;
+
             return $encontrado;
         } catch (PDOException $Exception) {
             self::desconectar();
@@ -164,24 +183,22 @@ class User extends Conexion
         }
     }
 
-    public function Guardar()
+    public function registroDesdeLanding()
     {
-        $idEstado = 1;
-        $idRol = 2;
-
-        $query = "INSERT INTO `usuarios`(`nombre`, `apellido1`, `apellido2`, `cedula`, `correo`, `telefono`, `contrasena`, `idRol`, `idEstado`) 
-                      VALUES (:nombre, :apellido1, :apellido2, :cedula, :correo, :telefono, :contrasena, :idRol, :idEstado)";
+        $query = "INSERT INTO `usuario`(`nombre`, `apellido1`, `apellido2`, `cedula`, `correo`, `telefono`, `contrasena`, `idRol`) 
+                      VALUES (:nombre, :apellido1, :apellido2, :cedula, :correo, :telefono, :contrasena, 2)";
 
         try {
             self::getConexion();
 
-            $nombre = strtoupper($this->getNombre());
-            $apellido1 = strtoupper($this->getApellido1());
-            $apellido2 = strtoupper($this->getApellido2());
+            $nombre = $this->getNombre();
+            $apellido1 = $this->getApellido1();
+            $apellido2 = $this->getApellido2();
             $cedula = $this->getCedula();
             $telefono = $this->getTelefono();
             $correo = $this->getCorreo();
             $contrasena = $this->getContrasena();
+
             $resultado = self::$cnx->prepare($query);
 
             $resultado->bindParam(":nombre", $nombre, PDO::PARAM_STR);
@@ -190,9 +207,7 @@ class User extends Conexion
             $resultado->bindParam(":cedula", $cedula, PDO::PARAM_STR);
             $resultado->bindParam(":correo", $correo, PDO::PARAM_STR);
             $resultado->bindParam(":telefono", $telefono, PDO::PARAM_STR);
-            $resultado->bindParam(":contrasena", $contrasena, PDO::PARAM_STR);
-            $resultado->bindParam(":idRol", $idRol, PDO::PARAM_INT);
-            $resultado->bindParam(":idEstado", $idEstado, PDO::PARAM_INT);
+            $resultado->bindParam(":contrasena", $contrasena, PDO::PARAM_STR);                       
 
             $resultado->execute();
 
@@ -364,8 +379,40 @@ class User extends Conexion
         }
     }
 
+    public static function actualizarContrasenaHasheada($idUsuario)
+    {
+        $querySelect = "SELECT contrasena FROM usuario WHERE idUsuario = :idUsuario";
+        $queryUpdate = "UPDATE usuario SET contrasena = :contrasena WHERE idUsuario = :idUsuario";
+        
+        try {
+            self::getConexion();
+            
+            // Fetch the current password
+            $resultado = self::$cnx->prepare($querySelect);
+            $resultado->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
+            $resultado->execute();
+            $currentPassword = $resultado->fetchColumn();
+            
+            // Hash the current password
+            $hashedPassword = password_hash($currentPassword, PASSWORD_DEFAULT);
+            
+            // Update the password with the hashed version
+            $resultado = self::$cnx->prepare($queryUpdate);
+            $resultado->bindParam(":contrasena", $hashedPassword, PDO::PARAM_STR);
+            $resultado->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
+            $resultado->execute();
+            
+            self::desconectar();
+            return $resultado->rowCount();
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return $error;
+        }
+    }
+
     /*=====  End of Metodos de la Clase  ======*/
 }
 
 //$mode = new User();
-//var_dump($mode->listarEmpleadosActivosInactivos());
+//var_dump($mode->actualizarContrasenaHasheada(22));

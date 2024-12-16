@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['idUsuario'])) {
+  header('Location: login.php');
+}
+?>
+
 <section class="editar-sensores">
   <div class="container mt-4">
     <h2 class="text-white">Editar sensor</h2>
