@@ -115,11 +115,11 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="./assets/js/tablaUsuarios.js"></script>
   <script src="./assets/js/tablaSensores.js"></script>
-  <script src="./assets/js/tablaReportes.js"></script>
+  <script src="./assets/js/reportes.js"></script>
   <script src="./assets/js/tablaMisReportes.js"></script>
   <script src="./assets/js/tablaAlarmas.js"></script>
   <script src="./assets/js/tablaAlcantarillas.js"></script>  
-  <script src="./assets/js/mantenimiento.js"></script>
+  <script src="./assets/js/mantenimiento.js"></script>  
   
 </body>
 

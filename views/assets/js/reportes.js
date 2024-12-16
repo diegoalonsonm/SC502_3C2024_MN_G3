@@ -2,7 +2,7 @@ $.ajax({
     url: '../controllers/reportesController.php?op=listarTodosReportes',
     method: "GET",
     dataType: 'json',
-    success: function (data) {        
+    success: function (data) {      
         $('#tbReportes').DataTable({
             data: data,
             "columns": [
@@ -10,7 +10,7 @@ $.ajax({
                 {'data':'comentario'},
                 {'data':'fecha'},
                 {'data':'codigo_alcantarilla'},
-                {'data':'idUsuario'},
+                {'data':'correo'},
                 {'data':'idEstado',
                     render: function (data, type, row) {
                         if (data == 1) {
@@ -28,5 +28,37 @@ $.ajax({
                 }
             ]
         })
+    },
+    error: function (error) {
+        console.log(error)
     }
+})
+
+$("#locationForm").submit((e) => {
+  e.preventDefault()
+
+  const comentario = $('#comentario').val()
+  const alcantarilla = $('#alcantarilla').val()
+  const fecha = new Date().toISOString().split('T')[0]
+
+  $.ajax({
+    url: '../controllers/reportesController.php?op=registrarReporte&comentario=' + comentario + '&alcantarilla=' + alcantarilla + '&fecha=' + fecha,
+    type: 'POST',
+    data: { comentario, alcantarilla, fecha },
+    success: (data) => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Reporte registrado',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    },
+    error: (e) => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error al registrar el reporte'
+        })
+        console.log(e)
+      }
+  })
 })

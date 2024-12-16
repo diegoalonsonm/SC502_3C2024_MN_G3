@@ -114,7 +114,7 @@ class Reporte extends Conexion {
     }
 
     public static function listarTodosReportes() {
-        $sql = "select r.idReporte, r.comentario, r.fecha, r.idUsuario, a.codigo as codigo_alcantarilla, e.idEstado from reportes r join alcantarilla a on r.idAlcantarilla = a.idAlcantarilla join estado e on r.idEstado = e.idEstado";
+        $sql = "select r.idReporte, r.comentario, r.fecha, u.correo, a.codigo as codigo_alcantarilla, e.idEstado from reportes r join alcantarilla a on r.idAlcantarilla = a.idAlcantarilla join estado e on r.idEstado = e.idEstado join usuario u on r.idUsuario = u.idUsuario";
 
         try {
             self::getConexion();
@@ -149,6 +149,34 @@ class Reporte extends Conexion {
             self::desconectar();
             $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );
             return json_encode($error);
+        }
+    }
+
+    public function crearReporte() {
+        $sql = "insert into reportes (comentario, fecha, idAlcantarilla, idUsuario) values (:comentario, :fecha, :idAlcantarilla, :idUsuario)";
+
+        try {
+            self::getConexion();
+
+            $comentario = $this->getComentario();
+            $fecha = $this->getFecha();
+            $idAlcantarilla = $this->getIdAlcantarilla();
+            $idUsuario = $this->getIdUsuario();
+            
+            $resultado = self::$cnx->prepare($sql);
+
+            $resultado->bindParam(':comentario', $comentario, PDO::PARAM_STR);
+            $resultado->bindParam(':fecha', $fecha, PDO::PARAM_STR);
+            $resultado->bindParam(':idAlcantarilla', $idAlcantarilla, PDO::PARAM_INT);
+            $resultado->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
+
+            $resultado->execute();
+
+            self::desconectar();
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );;
+          return json_encode($error);
         }
     }
 
