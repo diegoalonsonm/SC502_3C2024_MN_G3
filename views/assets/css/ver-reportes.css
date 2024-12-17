@@ -1,0 +1,19 @@
+/*Womp Womp :p */
+
+/*Fondo*/
+.bg-color-reportes {
+    background-color: #333;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+/*Boton*/
+.btn-ver-reporte {
+    background-color: #8eb364;
+    border: #333;
+    transition: background-color 0.3s ease;
+}
+
+.btn-ver-reporte:hover {
+    background-color: #8eb364;
+}
