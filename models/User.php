@@ -4,7 +4,7 @@ require_once '../config/Conexion.php';
 class User extends Conexion
 {
     /*=============================================
-    =            Atributos de la Clase            =
+    =            Atributos de la Clasee     =
     =============================================*/
     protected static $cnx;
     private $idUsuario = null;
@@ -415,4 +415,4 @@ class User extends Conexion
 }
 
 //$mode = new User();
-//var_dump($mode->actualizarContrasenaHasheada(22));
+//var_dump($mode->actualizarContrasenaHasheada(1));
