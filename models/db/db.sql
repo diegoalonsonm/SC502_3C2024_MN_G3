@@ -76,6 +76,7 @@ INSERT INTO estado (descrpcion) VALUES ('Activo');
 INSERT INTO estado (descrpcion) VALUES ('Inactivo');
 INSERT INTO estado (descrpcion) VALUES ('Pendiente');
 INSERT INTO estado (descrpcion) VALUES ('En mantenimiento');
+INSERT INTO estado (descrpcion) VALUES ('Completado');
 
 INSERT INTO rol (descrpcion) VALUES ('Administrador');
 INSERT INTO rol (descrpcion) VALUES ('Usuario');
@@ -113,46 +114,46 @@ VALUES
 ('San José', 'Goicoechea', 'Guadalupe', 'Al frente del centro comercial, casa azul', '9.94531', '-84.05932', 3);
 
 
-INSERT INTO sensor (codigo, marca, idEstado) VALUES
-                                                 ('SEN001', 'Bosch', 1),
-                                                 ('SEN002', 'Honeywell', 2),
-                                                 ('SEN003', 'Siemens', 1),
-                                                 ('SEN004', 'Panasonic', 3),
-                                                 ('SEN005', 'GE', 1);
+INSERT INTO sensor (marca, idEstado) VALUES
+                                                 ('Bosch', 1),
+                                                 ('Honeywell', 2),
+                                                 ('Siemens', 1),
+                                                 ('Panasonic', 3),
+                                                 ('GE', 1);
 
-INSERT INTO alcantarilla (codigo, idSensor, idEstado, idDireccion) VALUES
-                                                                       ('ALC001', 1, 1, 1),
-                                                                       ('ALC002', 2, 2, 2),
-                                                                       ('ALC003', 3, 1, 3),
-                                                                       ('ALC004', 4, 3, 4),
-                                                                       ('ALC005', 5, 1, 5);
+INSERT INTO alcantarilla (idSensor, idEstado, idDireccion) VALUES
+                                                                       (1, 1, 1),
+                                                                       ( 2, 2, 2),
+                                                                       ( 3, 1, 3),
+                                                                       ( 4, 3, 4),
+                                                                       ( 5, 1, 5);
 
-INSERT INTO alcantarilla (codigo, idSensor, idEstado, idDireccion) VALUES
-('ALC006', 1, 1, 1),
-('ALC007', 2, 2, 2),
-('ALC008', 3, 3, 3),
-('ALC009', 4, 1, 4),
-('ALC010', 5, 2, 5),
-('ALC011', 1, 3, 6),
-('ALC012', 2, 1, 7),
-('ALC013', 3, 2, 8),
-('ALC014', 4, 3, 9),
-('ALC015', 5, 1, 10),
-('ALC016', 1, 2, 11),
-('ALC017', 2, 3, 12),
-('ALC018', 3, 1, 13),
-('ALC019', 4, 2, 14),
-('ALC020', 5, 3, 15),
-('ALC021', 1, 1, 1),
-('ALC022', 2, 2, 2),
-('ALC023', 3, 3, 3),
-('ALC024', 4, 1, 4),
-('ALC025', 5, 2, 5),
-('ALC026', 1, 3, 6),
-('ALC027', 2, 1, 7),
-('ALC028', 3, 2, 8),
-('ALC029', 4, 3, 9),
-('ALC030', 5, 1, 10);
+INSERT INTO alcantarilla (idSensor, idEstado, idDireccion) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3),
+(4, 1, 4),
+(5, 2, 5),
+(1, 3, 6),
+(2, 1, 7),
+(3, 2, 8),
+(4, 3, 9),
+(5, 1, 10),
+(1, 2, 11),
+(2, 3, 12),
+(3, 1, 13),
+(4, 2, 14),
+(5, 3, 15),
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3),
+(4, 1, 4),
+(5, 2, 5),
+(1, 3, 6),
+(2, 1, 7),
+(3, 2, 8),
+(4, 3, 9),
+(5, 1, 10);
 
 INSERT INTO alcantarilla (codigo, idSensor, idEstado, idDireccion)
 VALUES
