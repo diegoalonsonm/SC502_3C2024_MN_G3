@@ -120,6 +120,7 @@
   <script src="./assets/js/tablaAlarmas.js"></script>
   <script src="./assets/js/tablaAlcantarillas.js"></script>  
   <script src="./assets/js/mantenimiento.js"></script>  
+  <script src="./assets/js/registrarUsuario.js"></script>
   
 </body>
 

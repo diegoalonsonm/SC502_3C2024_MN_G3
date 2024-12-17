@@ -23,9 +23,7 @@ class User extends Conexion
     /*=============================================
     =            Contructores de la Clase          =
     =============================================*/
-    public function __construct()
-    {
-    }
+    public function __construct() {}
     /*=====  End of Contructores de la Clase  ======*/
 
     /*=============================================
@@ -207,7 +205,7 @@ class User extends Conexion
             $resultado->bindParam(":cedula", $cedula, PDO::PARAM_STR);
             $resultado->bindParam(":correo", $correo, PDO::PARAM_STR);
             $resultado->bindParam(":telefono", $telefono, PDO::PARAM_STR);
-            $resultado->bindParam(":contrasena", $contrasena, PDO::PARAM_STR);                       
+            $resultado->bindParam(":contrasena", $contrasena, PDO::PARAM_STR);
 
             $resultado->execute();
 
@@ -297,8 +295,7 @@ class User extends Conexion
             }
         } catch (PDOException $Exception) {
             self::desconectar();
-            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
-            ;
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();;
             return json_encode($error);
         }
     }
@@ -363,7 +360,8 @@ class User extends Conexion
         }
     }
 
-    public static function listarEmpleadosActivosInactivosGrafico() {
+    public static function listarEmpleadosActivosInactivosGrafico()
+    {
         $sql = "SELECT CASE WHEN idEstado = 1 THEN 'Activo' WHEN idEstado = 2 THEN 'Inactivo' END AS estado, COUNT(*) AS cantidad_empleados FROM usuario WHERE idEstado IN (1, 2) AND idRol IN (1, 3) GROUP BY idEstado;";
 
         try {
@@ -383,25 +381,25 @@ class User extends Conexion
     {
         $querySelect = "SELECT contrasena FROM usuario WHERE idUsuario = :idUsuario";
         $queryUpdate = "UPDATE usuario SET contrasena = :contrasena WHERE idUsuario = :idUsuario";
-        
+
         try {
             self::getConexion();
-            
+
             // Fetch the current password
             $resultado = self::$cnx->prepare($querySelect);
             $resultado->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
             $resultado->execute();
             $currentPassword = $resultado->fetchColumn();
-            
+
             // Hash the current password
             $hashedPassword = password_hash($currentPassword, PASSWORD_DEFAULT);
-            
+
             // Update the password with the hashed version
             $resultado = self::$cnx->prepare($queryUpdate);
             $resultado->bindParam(":contrasena", $hashedPassword, PDO::PARAM_STR);
             $resultado->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
             $resultado->execute();
-            
+
             self::desconectar();
             return $resultado->rowCount();
         } catch (PDOException $Exception) {
@@ -411,6 +409,65 @@ class User extends Conexion
         }
     }
 
-    /*=====  End of Metodos de la Clase  ======*/
+    public function obtenerRoles()
+    {
+        $query = "SELECT * FROM rol;";
+        try {
+            self::getConexion();
+
+            $resultado = self::$cnx->prepare($query);
+            $resultado->execute();
+            self::desconectar();
+            return $resultado->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return json_encode($error);
+        }
+    }
+    public function AgregarUsuarioAdmn()
+    {
+        $query = "INSERT INTO `usuario`(`nombre`, `apellido1`, `apellido2`, `cedula`, `correo`, `telefono`, `contrasena`, `idRol`) 
+    VALUES (:nombre, :apellido1, :apellido2, :cedula, :correo, :telefono, :contrasena, :idRol)";
+
+        try {
+            self::getConexion();
+
+            $nombre = $this->getNombre();
+            $apellido1 = $this->getApellido1();
+            $apellido2 = $this->getApellido2();
+            $cedula = $this->getCedula();
+            $telefono = $this->getTelefono();
+            $correo = $this->getCorreo();
+            $contrasena = $this->getContrasena();
+            $rol = $this->getidRol();
+
+            $resultado = self::$cnx->prepare($query);
+
+            $resultado->bindParam(":nombre", $nombre, PDO::PARAM_STR);
+            $resultado->bindParam(":apellido1", $apellido1, PDO::PARAM_STR);
+            $resultado->bindParam(":apellido2", $apellido2, PDO::PARAM_STR);
+            $resultado->bindParam(":cedula", $cedula, PDO::PARAM_STR);
+            $resultado->bindParam(":correo", $correo, PDO::PARAM_STR);
+            $resultado->bindParam(":telefono", $telefono, PDO::PARAM_STR);
+            $resultado->bindParam(":contrasena", $contrasena, PDO::PARAM_STR);
+            $resultado->bindParam(":idRol", $rol, PDO::PARAM_STR);
+            $resultado->execute();
+
+            self::desconectar();
+            return true;
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return json_encode($error);
+        }
+    }
 }
 
+    /*=====  End of Metodos de la Clase  ======*/
+
+
+//$mode = new User;
+//for($i=1;$i<=5;$i++){
+//    var_dump( $mode->actualizarContrasenaHasheada($i));
+//}
