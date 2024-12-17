@@ -219,14 +219,14 @@ create table mantenimiento(
 INSERT INTO mantenimiento (fechaInicio, fechaFin, instrucciones, idUsuario, idAlcantarilla) VALUES
 ('2024-12-12', '2024-12-13', 'Limpieza de alcantarilla ALC001.', 4, 1),
 ('2024-12-12', '2024-12-13', 'Revisión técnica en alcantarilla ALC002.', 4, 2),
-('2024-12-12', '2024-12-13', 'Mantenimiento preventivo en alcantarilla ALC003.', 15, 3),
-('2024-12-12', '2024-12-13', 'Reparación de sensor en alcantarilla ALC004.', 15, 4),
-('2024-12-12', '2024-12-13', 'Inspección de rutina en alcantarilla ALC005.', 16, 5),
-('2024-12-12', '2024-12-13', 'Reparación de alcantarilla ALC006.', 16, 6),
-('2024-12-12', '2024-12-13', 'Limpieza de alcantarilla ALC007.', 17, 7),
-('2024-12-12', '2024-12-13', 'Revisión técnica en alcantarilla ALC008.', 17, 8),
-('2024-12-12', '2024-12-13', 'Mantenimiento preventivo en alcantarilla ALC009.', 18, 9),
-('2024-12-12', '2024-12-13', 'Reparación de sensor en alcantarilla ALC010.', 18, 10);
+('2024-12-12', '2024-12-13', 'Mantenimiento preventivo en alcantarilla ALC003.', 5, 3),
+('2024-12-12', '2024-12-13', 'Reparación de sensor en alcantarilla ALC004.', 1, 4),
+('2024-12-12', '2024-12-13', 'Inspección de rutina en alcantarilla ALC005.', 1, 5),
+('2024-12-12', '2024-12-13', 'Reparación de alcantarilla ALC006.', 1, 6),
+('2024-12-12', '2024-12-13', 'Limpieza de alcantarilla ALC007.', 2, 7),
+('2024-12-12', '2024-12-13', 'Revisión técnica en alcantarilla ALC008.', 5, 8),
+('2024-12-12', '2024-12-13', 'Mantenimiento preventivo en alcantarilla ALC009.', 3, 9),
+('2024-12-12', '2024-12-13', 'Reparación de sensor en alcantarilla ALC010.', 2, 10);
 
 -- TRIGGERS DE ESTADO
 
@@ -307,6 +307,7 @@ END$$
 -- TRIGGER DE SECUENICA
 DELIMITER $$
 
+DELIMITER $$
 CREATE TRIGGER generar_codigo_alcantarilla
 BEFORE INSERT
 ON alcantarilla
@@ -314,8 +315,9 @@ FOR EACH ROW
 BEGIN
     DECLARE nuevo_codigo INT;
 
-    SELECT CAST(SUBSTRING(codigo, 4)) + 1 INTO nuevo_codigo FROM alcantarilla 
-    ORDER BY CAST(SUBSTRING(codigo, 4) ) DESC LIMIT 1;
+    SELECT COALESCE(MAX(CAST(SUBSTRING(codigo, 4) AS UNSIGNED)), 0) + 1 
+    INTO nuevo_codigo 
+    FROM alcantarilla;
 
     SET NEW.codigo = CONCAT('ALC', LPAD(nuevo_codigo, 3, '0'));
 END$$

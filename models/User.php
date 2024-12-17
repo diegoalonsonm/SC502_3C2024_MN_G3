@@ -415,4 +415,4 @@ class User extends Conexion
 }
 
 //$mode = new User();
-//var_dump($mode->actualizarContrasenaHasheada(22));
+//$mode->actualizarContrasenaHasheada(1);
