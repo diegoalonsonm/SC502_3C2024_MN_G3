@@ -34,20 +34,20 @@
 
 <script>
     function initMap() {
-        // Crear el mapa centrado en una ubicación central
+       
         const map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 9.933215, lng: -84.037585 },  // Coordenadas de ejemplo (puedes cambiar estas)
+            center: { lat: 9.933215, lng: -84.037585 }, 
             zoom: 13
         });
 
-        // Crear los marcadores con las ubicaciones
+        
         const locations = [
-            { lat: 9.933215, lng: -84.037585, title: "Ubicación 1" },  // Coordenadas para el marcador 1
-            { lat: 9.934215, lng: -84.037685, title: "Ubicación 2" },  // Coordenadas para el marcador 2
-            { lat: 9.932215, lng: -84.036585, title: "Ubicación 3" }   // Coordenadas para el marcador 3
+            { lat: 9.9333, lng: -84.0833, title: "Ubicación 1" }, 
+            { lat: 10.0167, lng: -84.2167, title: "Ubicación 2" },  
+            { lat: 10.0025, lng: -84.1167, title: "Ubicación 3" }   
         ];
 
-        // Añadir los marcadores al mapa
+        
         locations.forEach(function(location) {
             new google.maps.Marker({
                 position: { lat: location.lat, lng: location.lng },
