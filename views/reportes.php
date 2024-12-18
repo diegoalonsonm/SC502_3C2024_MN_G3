@@ -60,7 +60,8 @@
             </div>   
             <div class="row mt-4">
                 <div class="col text-center">
-                    <a href="dashboard.php" class="btn btn-primary" style="background-color: #72b920;">
+                    
+                    <a href="dashboard.php?page=hacer-reporte" class="btn btn-primary" style="background-color: #72b920;">
                         ¡Haz tu reporte aquí!
                     </a>
                 </div>
