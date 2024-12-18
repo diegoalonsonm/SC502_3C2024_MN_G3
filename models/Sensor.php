@@ -101,6 +101,25 @@ class Sensor extends Conexion {
         }
     }
 
+
+    public static function inactivarSensor($idSensor) {
+        self::getConexion();
+
+        $query = "UPDATE sensor SET idEstado = 2 WHERE idSensor = :idSensor";
+
+        try {
+            $stmt = self::$cnx->prepare($query);
+            $stmt->bindParam(':idSensor', $idSensor, PDO::PARAM_INT);
+            $stmt->execute();
+            self::desconectar();
+            
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            return false;
+        }
+    }
+
 }
 
 //$sensor = new Sensor();

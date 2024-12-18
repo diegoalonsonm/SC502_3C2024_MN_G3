@@ -36,3 +36,27 @@ $.ajax({
         })
     }
 });
+
+
+$(document).on('click', '.btn-danger', function() {
+  var idSensor = $(this).closest('tr').find('td').eq(0).text(); 
+  $('#confirmModal').modal('show');
+
+  $('#confirmDelete').on('click', function() {
+      $.ajax({
+          url: '../controllers/SensorController.php?op=inactivarSensor',
+          method: 'POST',
+          data: { idSensor: idSensor },
+          success: function(response) {
+              var result = JSON.parse(response);
+              if (result.success) {
+                  alert('El sensor ha sido inactivado');
+                  $('#tbSensores').DataTable().ajax.reload();
+              } else {
+                  alert('Error al inactivar el sensor');
+              }
+              $('#confirmModal').modal('hide');
+          }
+      });
+  });
+});
