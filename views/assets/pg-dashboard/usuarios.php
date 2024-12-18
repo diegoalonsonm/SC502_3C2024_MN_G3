@@ -29,10 +29,8 @@
         </table>
       </div>
       <div class="mt-2">
-
-
         <div class="modal fade" id="agregarUsuario" tabindex="-1" aria-labelledby="agregarUsuarioModal"
-          aria-hidden="true">
+        <div class="modal fade" id="agregarUsuario" tabindex="-1" aria-labelledby="agregarUsuarioModal" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -40,6 +38,11 @@
                   Agregar usuario
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <form id="formAgregarUsuario">
@@ -58,38 +61,81 @@
                   <div class="mb-3">
                     <label for="telefonoAgregar" class="form-label">Teléfono</label>
                     <input type="text" class="form-control" id="telefonoAgregar" required />
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombre"
+                      required />
+                  </div>
+                  <div class="mb-3">
+                    <label for="apellido1Agregar" class="form-label">Primer Apellido</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="apellido1"
+                      required />
+                  </div>
+                  <div class="mb-3">
+                    <label for="apellido2Agregar" class="form-label">Segundo Apellido</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="apellido2"
+                      required />
+                  </div>
+                  <div class="mb-3">
+                    <label for="cedulaAgregar" class="form-label">Cédula</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cedula"
+                      required />
+                  </div>
+                  <div class="mb-3">
+                    <label for="correoAgregar" class="form-label">Correo</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="correo"
+                      required />
+                  </div>
+                  <div class="mb-3">
+                    <label for="telefonoAgregar" class="form-label">Teléfono</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="telefono"
+                      required />
+                  </div>
+                  <div class="mb-3">
+                    <label for="contrasena" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasena" name="contrasena" required>
                   </div>
                   <div class="mb-3">
                     <label for="rolAgregar" class="form-label">Rol</label>
-                    <select class="form-select" id="rolAgregar" required>
-                      <option value="" disabled selected>
-                        Selecciona un rol
-                      </option>
-                      <option value="admin">Admin</option>
-                      <option value="usuario">Usuario</option>
-                      <option value="editor">Editor</option>
-                    </select>
-                  </div>
-                  <div class="mb-3">
-                    <label for="estadoAgregar" class="form-label">Estado</label>
-                    <select class="form-select" id="estadoAgregar" required>
-                      <option value="" disabled selected>
-                        Selecciona un estado
-                      </option>
-                      <option value="activo">Activo</option>
-                      <option value="inactivo">Inactivo</option>
+                    <label for="rolAgregar">Seleccionar Rol:</label>
+                    <select id="idRol" name="idRol" required>
+                      <option value="">Cargando roles...</option>
                     </select>
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal">
                   Cerrar
                 </button>
-                <button id="agregarUsuariobtn" class="btn btn-primary">
+                <button type="submit" id="agregarUsuariobtn" class="btn btn-primary">
                   Agregar usuario
                 </button>
               </div>
+                </form>
+              </div>
+             
             </div>
           </div>
         </div>

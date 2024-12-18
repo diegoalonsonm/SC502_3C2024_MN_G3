@@ -123,9 +123,7 @@ if (!isset($_SESSION['idUsuario'])) {
   <script src="./assets/js/sensoresListado.js"></script>
   <script src="./assets/js/direccion.js"></script>
   <script src="./assets/js/alcantarilla.js"></script>
-
-
-
+  <script src="./assets/js/registrarUsuario.js"></script>
 </body>
 
 </html>
