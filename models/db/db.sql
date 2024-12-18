@@ -1,4 +1,3 @@
--- crear db
 CREATE DATABASE PROYECTO_G3;
 
 -- usar db
@@ -70,6 +69,7 @@ create TABLE alarma(
     FOREIGN KEY (idEstado) REFERENCES estado (idEstado),
     FOREIGN KEY (idUsuarioAlertar) REFERENCES usuario (idUsuario)
 );
+<<<<<<< HEAD
 
 -- insert de datos quemados para pruebas
 INSERT INTO estado (descrpcion) VALUES ('Activo');
@@ -177,6 +177,8 @@ INSERT INTO alarma (textoAlerta, idEstado, idAlcantarilla, idUsuarioAlertar) VAL
                                                                                  ('Revisión programada para la alcantarilla ALC005', 1, 5, 5);
 
 -- tabla de reportes
+=======
+>>>>>>> b3ceda845357101c77566fdc5cd15a0b9e8749fa
 create table reportes(
 	idReporte int not null PRIMARY KEY AUTO_INCREMENT,
     comentario text not null,
@@ -188,20 +190,6 @@ create table reportes(
     foreign key (idAlcantarilla) references alcantarilla (idAlcantarilla),
     foreign key (idEstado) references estado (idEstado)  
 );  
-
--- inserts para la tabla de reportes
-INSERT INTO reportes (comentario, fecha, idUsuario, idAlcantarilla, idEstado) VALUES
-('Reporte inicial de inspección en la alcantarilla ALC001.', '2024-12-12', 1, 1, 1),
-('Revisión técnica realizada, todo en orden en la alcantarilla ALC002.', '2024-12-12', 2, 2, 1),
-('Se detectó acumulación de desechos en la alcantarilla ALC003, requiere limpieza.', '2024-12-12', 3, 3, 2),
-('Informe de fallo en el sensor de la alcantarilla ALC004.', '2024-12-12', 4, 4, 3),
-('Inspección periódica completada en la alcantarilla ALC005, sin novedades.', '2024-12-12', 5, 5, 1),
-('Se encontró un problema menor en la alcantarilla ALC006, será reparado pronto.', '2024-12-12', 1, 6, 2),
-('Reporte de posible bloqueo en la alcantarilla ALC007, requiere intervención.', '2024-12-12', 2, 7, 2),
-('Actualización de estado en la alcantarilla ALC008, todo funciona correctamente.', '2024-12-12', 3, 8, 1),
-('Se ha detectado daño estructural en la alcantarilla ALC009.', '2024-12-12', 4, 9, 3),
-('El nivel de agua en la alcantarilla ALC010 está en valores normales.', '2024-12-12', 5, 10, 1);
-
 -- tabla de mantenimiento
 create table mantenimiento(
     idMantenimiento int not null PRIMARY KEY AUTO_INCREMENT,
@@ -215,19 +203,6 @@ create table mantenimiento(
     foreign key (idAlcantarilla) references alcantarilla (idAlcantarilla),
     foreign key (idEstado) references estado (idEstado)  
 );
-
--- inserts para la tabla de mantenimiento
-INSERT INTO mantenimiento (fechaInicio, fechaFin, instrucciones, idUsuario, idAlcantarilla) VALUES
-('2024-12-12', '2024-12-13', 'Limpieza de alcantarilla ALC001.', 4, 1),
-('2024-12-12', '2024-12-13', 'Revisión técnica en alcantarilla ALC002.', 4, 2),
-('2024-12-12', '2024-12-13', 'Mantenimiento preventivo en alcantarilla ALC003.', 5, 3),
-('2024-12-12', '2024-12-13', 'Reparación de sensor en alcantarilla ALC004.', 1, 4),
-('2024-12-12', '2024-12-13', 'Inspección de rutina en alcantarilla ALC005.', 1, 5),
-('2024-12-12', '2024-12-13', 'Reparación de alcantarilla ALC006.', 1, 6),
-('2024-12-12', '2024-12-13', 'Limpieza de alcantarilla ALC007.', 2, 7),
-('2024-12-12', '2024-12-13', 'Revisión técnica en alcantarilla ALC008.', 5, 8),
-('2024-12-12', '2024-12-13', 'Mantenimiento preventivo en alcantarilla ALC009.', 3, 9),
-('2024-12-12', '2024-12-13', 'Reparación de sensor en alcantarilla ALC010.', 2, 10);
 
 -- TRIGGERS DE ESTADO
 
@@ -359,3 +334,134 @@ BEGIN
 END //
 
 DELIMITER ;
+
+-- insert de datos quemados para pruebas
+INSERT INTO estado (descrpcion) VALUES ('Activo');
+INSERT INTO estado (descrpcion) VALUES ('Inactivo');
+INSERT INTO estado (descrpcion) VALUES ('Pendiente');
+INSERT INTO estado (descrpcion) VALUES ('En mantenimiento');
+INSERT INTO estado (descrpcion) VALUES ('Completado');
+
+INSERT INTO rol (descrpcion) VALUES ('Administrador');
+INSERT INTO rol (descrpcion) VALUES ('Usuario');
+INSERT INTO rol (descrpcion) VALUES ('Mantenimiento');
+
+INSERT INTO usuario (nombre, apellido1, apellido2, cedula, correo, telefono, contrasena, idRol) VALUES
+                                                                                                              ('Juan', 'Pérez', 'Gómez', '123456789', 'juan.perez@example.com', '1234567890', 'password123', 1),
+                                                                                                              ('María', 'López', 'Hernández', '987654321', 'maria.lopez@example.com', '0987654321', 'password456', 2),
+                                                                                                              ('Carlos', 'Rodríguez', 'Molina', '456123789', 'carlos.rodriguez@example.com', '4567891230', 'password789', 2),
+                                                                                                              ('Ana', 'Martínez', 'Vargas', '321654987', 'ana.martinez@example.com', '7891234560', 'password012', 1),
+                                                                                                              ('Laura', 'García', 'Rojas', '159753468', 'laura.garcia@example.com', '3216549870', 'password345', 2);
+
+INSERT INTO direccion (provincia, canton, distrito, otrasDirecciones, coordenadasY, coordenadasX) VALUES
+                                                                                                                ('San José', 'Central', 'Carmen', 'Cerca del parque central', '9.9333', '-84.0833'),
+                                                                                                                ('Alajuela', 'Central', 'San José', 'Frente a la iglesia', '10.0167', '-84.2167'),
+                                                                                                                ('Heredia', 'Central', 'San Francisco', 'Detrás del estadio', '10.0025', '-84.1167'),
+                                                                                                                ('Cartago', 'Central', 'Oriental', 'A un costado del mercado', '9.8667', '-83.9167'),
+                                                                                                                ('Puntarenas', 'Central', 'Barranca', 'Cerca de la playa', '9.9765', '-84.8335');
+INSERT INTO direccion (provincia, canton, distrito, otrasDirecciones, coordenadasY, coordenadasX)
+VALUES
+('San José', 'Escazú', 'San Rafael', 'Cerca del parque central, casa azul', '9.92759', '-84.13715'),
+('Alajuela', 'San Carlos', 'Quesada', 'Detrás del estadio, portón negro', '10.33835', '-84.42729'),
+('Cartago', 'Turrialba', 'La Suiza', '100 metros norte de la iglesia, casa amarilla', '9.90566', '-83.67739'),
+('Heredia', 'San Rafael', 'Concepción', 'Frente al supermercado, edificio blanco', '10.01584', '-84.08849'),
+('Guanacaste', 'Liberia', 'Curubandé', '2 km al oeste del cruce principal, finca El Paraíso', '10.66675', '-85.45648'),
+('Puntarenas', 'Osa', 'Puerto Cortés', 'Cerca del muelle, edificio color crema', '8.95506', '-83.52738'),
+('Limón', 'Pococí', 'Guápiles', 'A la par de la estación de bomberos', '10.21511', '-83.78753'),
+('San José', 'Desamparados', 'San Miguel', 'Frente al colegio, casa de dos pisos', '9.88454', '-84.04839'),
+('Alajuela', 'Grecia', 'San Roque', '100 metros al este del mercado, portón verde', '10.06903', '-84.31677'),
+('Cartago', 'Jiménez', 'Juan Viñas', 'Sobre la carretera principal, casa blanca', '9.89448', '-83.70542'),
+('Heredia', 'Belén', 'San Antonio', 'Frente al parque industrial, edificio gris', '9.97303', '-84.15494'),
+('Guanacaste', 'Santa Cruz', 'Tamarindo', 'Cerca de la playa, edificio de madera', '10.29977', '-85.84163'),
+('Puntarenas', 'Montes de Oro', 'Miramar', 'En la montaña, finca Los Abuelos', '10.09659', '-84.75477'),
+('Limón', 'Talamanca', 'Bratsi', 'En la comunidad indígena, edificio comunitario', '9.73177', '-83.06404'),
+('San José', 'Goicoechea', 'Guadalupe', 'Al frente del centro comercial, casa azul', '9.94531', '-84.05932');
+
+
+INSERT INTO sensor (marca) VALUES
+                                                 ('Bosch'),
+                                                 ('Honeywell'),
+                                                 ('Siemens'),
+                                                 ('Panasonic'),
+                                                 ('GE');
+
+INSERT INTO alcantarilla (idSensor, idDireccion) VALUES
+                                                                       (1,  1),
+                                                                       ( 2,  2),
+                                                                       ( 3,  3),
+                                                                       ( 4,  4),
+                                                                       ( 5,  5);
+
+INSERT INTO alcantarilla (idSensor, idDireccion) VALUES
+(1,  1),
+(2,  2),
+(3,  3),
+(4,  4),
+(5,  5),
+(1,  6),
+(2,  7),
+(3,  8),
+(4,  9),
+(5,  10),
+(1,  11),
+(2,  12),
+(3,  13),
+(4,  14),
+(5,  15),
+(1,  1),
+(2,  2),
+(3,  3),
+(4,  4),
+(5,  5),
+(1,  6),
+(2,  7),
+(3,  8),
+(4,  9),
+(5,  10);
+
+INSERT INTO alcantarilla (codigo, idSensor, idDireccion)
+VALUES
+('ALC031', 1, 11),
+('ALC032', 1,  12),
+('ALC033', 2,  13),
+('ALC034', 2,  14),
+('ALC035', 2,  15),
+('ALC036', 3,  1),
+('ALC037', 4,  2),
+('ALC038', 4,  3),
+('ALC039', 4,  4),
+('ALC040', 5,  5);
+
+
+INSERT INTO alarma (textoAlerta, idAlcantarilla, idUsuarioAlertar) VALUES
+                                                                                 ('Nivel de agua alto en la alcantarilla ALC001', 1, 1),
+                                                                                 ('Sensor desactivado en la alcantarilla ALC002', 2, 2),
+                                                                                 ('Obstrucción detectada en la alcantarilla ALC003', 3, 3),
+                                                                                 ('Fallo en el sensor de la alcantarilla ALC004' , 4, 4),
+                                                                                 ('Revisión programada para la alcantarilla ALC005', 5, 5);
+
+-- inserts para la tabla de reportes
+INSERT INTO reportes (comentario, fecha, idUsuario, idAlcantarilla) VALUES
+('Reporte inicial de inspección en la alcantarilla ALC001.', '2024-12-12', 1, 1),
+('Revisión técnica realizada, todo en orden en la alcantarilla ALC002.', '2024-12-12', 2, 2),
+('Se detectó acumulación de desechos en la alcantarilla ALC003, requiere limpieza.', '2024-12-12', 3, 3),
+('Informe de fallo en el sensor de la alcantarilla ALC004.', '2024-12-12', 4, 4),
+('Inspección periódica completada en la alcantarilla ALC005, sin novedades.', '2024-12-12', 5, 5),
+('Se encontró un problema menor en la alcantarilla ALC006, será reparado pronto.', '2024-12-12', 1, 6),
+('Reporte de posible bloqueo en la alcantarilla ALC007, requiere intervención.', '2024-12-12', 2, 7),
+('Actualización de estado en la alcantarilla ALC008, todo funciona correctamente.', '2024-12-12', 3, 8),
+('Se ha detectado daño estructural en la alcantarilla ALC009.', '2024-12-12', 4, 9),
+('El nivel de agua en la alcantarilla ALC010 está en valores normales.', '2024-12-12', 5, 10);
+
+-- inserts para la tabla de mantenimiento
+INSERT INTO mantenimiento (fechaInicio, fechaFin, instrucciones, idUsuario, idAlcantarilla) VALUES
+('2024-12-12', '2024-12-13', 'Limpieza de alcantarilla ALC001.', 4, 1),
+('2024-12-12', '2024-12-13', 'Revisión técnica en alcantarilla ALC002.', 4, 2),
+('2024-12-12', '2024-12-13', 'Mantenimiento preventivo en alcantarilla ALC003.', 5, 3),
+('2024-12-12', '2024-12-13', 'Reparación de sensor en alcantarilla ALC004.', 1, 4),
+('2024-12-12', '2024-12-13', 'Inspección de rutina en alcantarilla ALC005.', 1, 5),
+('2024-12-12', '2024-12-13', 'Reparación de alcantarilla ALC006.', 1, 6),
+('2024-12-12', '2024-12-13', 'Limpieza de alcantarilla ALC007.', 2, 7),
+('2024-12-12', '2024-12-13', 'Revisión técnica en alcantarilla ALC008.', 5, 8),
+('2024-12-12', '2024-12-13', 'Mantenimiento preventivo en alcantarilla ALC009.', 3, 9),
+('2024-12-12', '2024-12-13', 'Reparación de sensor en alcantarilla ALC010.', 2, 10);
