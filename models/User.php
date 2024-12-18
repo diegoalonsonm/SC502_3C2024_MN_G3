@@ -1,11 +1,12 @@
 <?php
 require_once '../config/Conexion.php';
 
-class User extends Conexion
-{
+class User extends Conexion {
+
     /*=============================================
     =            Atributos de la Clasee     =
     =============================================*/
+
     protected static $cnx;
     private $idUsuario = null;
     private $nombre = null;
@@ -408,6 +409,37 @@ class User extends Conexion
             self::desconectar();
             $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
             return $error;
+        }
+    }
+
+    public function autenticacionLogin ($correo, $password) {
+        $sql = "select * from usuario where correo = :correo and idEstado = 1";
+        
+        try {
+
+            self::getConexion();
+
+            $resultado = self::$cnx->prepare($sql);
+            
+            $email = $this->getCorreo();
+
+            $resultado->bindParam(":correo", $email, PDO::PARAM_STR);
+            $resultado->execute();
+
+            self::desconectar();
+
+            $usuario = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($usuario && password_verify($this->getContrasena(), $usuario['contrasena'])) {
+                return $usuario;
+            } else {
+                return null;
+            }
+
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
+          return $error;
         }
     }
 
