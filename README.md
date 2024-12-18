@@ -8,8 +8,8 @@ Tema: por definir
 - Diego Naranjo
 - Jamal Marshall
 - Dan Ramírez
-- Mariana Rodríguez
 - Charlotte Alfaro
+- Mariana Rodríguez
 - Emanuel Fernandez
 
 ### Estructura de carpetas

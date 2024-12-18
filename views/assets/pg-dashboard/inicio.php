@@ -37,7 +37,7 @@ if (!isset($_SESSION['idUsuario'])) {
             <?php require_once 'pg-graficos/alcantarillasMante.php'; ?>
         </div>
         <div class="col-4 card-container">
-            <?php require_once 'pg-graficos/empleados.php'; ?>
+            <?php require_once 'pg-graficos/sensores.php'; ?>
         </div>
     </div>
     <div class="row mt-5">
@@ -48,7 +48,7 @@ if (!isset($_SESSION['idUsuario'])) {
             <?php require_once 'pg-graficos/reportesUsuario.php'; ?>
         </div>
         <div class="col-4 card-container">
-            <?php require_once 'pg-graficos/sensores.php'; ?>
+            <?php require_once 'pg-graficos/empleados.php'; ?>
         </div>
     </div>
 </div>
