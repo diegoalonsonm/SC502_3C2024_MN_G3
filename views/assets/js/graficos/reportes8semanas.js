@@ -6,7 +6,6 @@ $.ajax({
     processData: false,
     success: (datos) => {
       let reportes = JSON.parse(datos)
-      console.log(reportes)
       let etiquetas = []
       let valores = []      
   
