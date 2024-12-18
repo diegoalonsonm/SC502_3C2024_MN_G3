@@ -116,6 +116,24 @@ class Sensor extends Conexion
         }
     }
 
+
+    public static function inactivarSensor($idSensor) {
+        $query = "UPDATE sensor SET idEstado = 2 WHERE idSensor = :idSensor";
+
+        try {
+          self::getConexion();
+            $stmt = self::$cnx->prepare($query);
+            $stmt->bindParam(':idSensor', $idSensor, PDO::PARAM_INT);
+            $stmt->execute();
+            self::desconectar();
+            
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            return false;
+        }
+    }
+
     public static function listarSensoresActivos()
     {
         $query = "SELECT idSensor, codigo FROM sensor WHERE idEstado = 1";
@@ -133,8 +151,6 @@ class Sensor extends Conexion
             return json_encode(['error' => $error]);
         }
     }
-
-
 }
 
 //$sensor = new Sensor();

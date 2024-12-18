@@ -18,6 +18,7 @@ if (!isset($_SESSION['idUsuario'])) {
               <th scope="col">Alcantarilla</th>
               <th scope="col">Usuario</th>
               <th scope="col">Estado</th>
+              <th scope="col">Opciones</th>
             </tr>
           </thead>
         </table>

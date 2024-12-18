@@ -65,26 +65,48 @@ class Alarma extends Conexion {
         self::$cnx = null;
     }
 
-    // metodos
+    // Métodos
     public static function listarAlarmasTabla() {
-        $sql = "select a.idAlarma, a.textoAlerta, a.idEstado, u.correo, al.codigo from alarma a join usuario u on a.idUsuarioAlertar = u.idUsuario join alcantarilla al on a.idAlcantarilla = al.idAlcantarilla;";
+        $sql = "select a.idAlarma, a.textoAlerta, a.idEstado, u.correo, al.codigo 
+                from alarma a 
+                join usuario u on a.idUsuarioAlertar = u.idUsuario 
+                join alcantarilla al on a.idAlcantarilla = al.idAlcantarilla";
 
         try {
             self::getConexion();
-
             $resultado = self::$cnx->prepare($sql);
             $resultado->execute();
-
             self::desconectar();
-            
             return $resultado->fetchAll();
         } catch (PDOException $Exception) {
             self::desconectar();
-            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );
+            $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
             return json_encode($error);
         }
     }
 
+    // actualizar el estado de la alarma a inactivo (cambiar de activo a inactivo)
+    public static function actualizarEstadoAlarma($idAlarma, $nuevoEstado) {
+        $sql = "UPDATE alarma SET idEstado = :nuevoEstado WHERE idAlarma = :idAlarma";  // Corrige el orden de los parámetros
+    
+        try {
+            self::getConexion();
+            $stmt = self::$cnx->prepare($sql);
+            $stmt->bindParam(':nuevoEstado', $nuevoEstado, PDO::PARAM_INT);  // Primero se pasa el nuevoEstado
+            $stmt->bindParam(':idAlarma', $idAlarma, PDO::PARAM_INT);  // Después el idAlarma
+    
+            $resultado = $stmt->execute();  // Ejecutamos la consulta
+            self::desconectar();
+            
+            return $resultado;  // Devolvemos el resultado (true o false)
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            error_log("Error al actualizar estado: " . $Exception->getMessage());  // Error logging
+            return false;
+        }
+    }
+    
+    
 }
 
 //$alarma = new Alarma();
