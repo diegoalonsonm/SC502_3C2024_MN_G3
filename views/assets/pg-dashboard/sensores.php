@@ -16,6 +16,7 @@ if (!isset($_SESSION['idUsuario'])) {
               <th scope="col">Codigo</th>
               <th scope="col">Marca</th>
               <th scope="col">Estado</th>
+              <th scope="col">Opciones</th>
             </tr>
           </thead>
         </table>
