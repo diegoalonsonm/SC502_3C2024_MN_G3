@@ -44,7 +44,7 @@ if (!isset($_SESSION['idUsuario'])) {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="agregarMantenimiento">
           <div class="mb-3">
             <label for="instrucciones" class="form-label">Instrucciones del mantenimiento</label>
             <input type="text" class="form-control" id="instrucciones" required>

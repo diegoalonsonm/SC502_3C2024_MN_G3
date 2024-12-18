@@ -64,6 +64,6 @@ switch ($_GET["op"]) {
 
         echo "Se ha finalizado correctamente el mantenimiento";
         
-        break;    
+        break;
 
 }

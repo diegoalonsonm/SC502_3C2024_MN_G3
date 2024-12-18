@@ -61,8 +61,7 @@ $(document).ready(function () {
     });
 });
 
-$("formAgregarUsuario").submit((e) => {
-
+$("#formAgregarUsuario").submit((e) => {
     const nombre = $('#nombre').val()
     const apellido1 = $('#apellido1').val()
     const apellido2 = $('#apellido2').val()
@@ -70,7 +69,7 @@ $("formAgregarUsuario").submit((e) => {
     const contrasena = $('#contrasena').val()
     const telefono = $('#numero').val()
     const cedula = $('#cedula').val()
-    const rol = $('#rol').val()
+    const rol = $('#idRol').val()
 
     e.preventDefault()
 
@@ -79,15 +78,16 @@ $("formAgregarUsuario").submit((e) => {
         type: 'POST',
         data: { nombre, apellido1, apellido2, correo, contrasena, telefono, cedula, rol },
         success: (data) => {
+            console.log(data)
             Swal.fire({
                 icon: 'success',
                 title: 'Usuario registrado',
                 showConfirmButton: false,
                 timer: 1500
             });
-            setTimeout(() => {
-                window.location.href = 'dashboard.php'
-            }, 1500)
+            //setTimeout(() => {
+            //    window.location.href = 'dashboard.php'
+            //}, 1500)
 
         },
         error: (e) => {
