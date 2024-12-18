@@ -1,4 +1,4 @@
-$("form").submit((e) => {
+$("formRegistroUsuario").submit((e) => {
     e.preventDefault()
 
     const nombre = $('#nombre').val()

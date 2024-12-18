@@ -53,6 +53,7 @@ if (!isset($_SESSION['idUsuario'])) {
       </div>
       <div class="modal-body">
         <form id="formAgregarSensor">
+          <div>
             <label for="marca" class="form-label">Marca</label>
             <input type="text" class="form-control" id="marca" name="marca" required>
           </div>
