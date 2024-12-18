@@ -1,14 +1,15 @@
 <?php
 session_start();
-require_once "../models/loginModel.php";
+require_once "../models/LoginModel.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = $_POST['correo'];
     $password = $_POST['password'];
-
+    
     $usuario = LoginModel::autenticar($correo, $password);
-
+    
     if ($usuario) {
+
         $_SESSION['idUsuario'] = $usuario['idUsuario'];
         $_SESSION['nombre'] = $usuario['nombre'];
         $_SESSION['correo'] = $usuario['correo'];

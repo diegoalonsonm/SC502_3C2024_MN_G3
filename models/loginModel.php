@@ -7,7 +7,7 @@ class LoginModel
     {
         try {
             $conexion = Conexion::conectar();
-            $sql = "SELECT * FROM usuario WHERE correo = :correo and idEstado = 1";
+            $sql = "SELECT * FROM usuario WHERE correo = :correo AND idEstado = 1";
             $stmt = $conexion->prepare($sql);
             $stmt->bindParam(':correo', $correo, PDO::PARAM_STR);
             $stmt->execute();
@@ -18,14 +18,23 @@ class LoginModel
                 if (password_verify($password, $usuario['contrasena'])) {
                     return $usuario;
                 } else {
-                    return null;
+                    return "Contraseña incorrecta.";
                 }
             } else {
-                return null;
+                return "Usuario no encontrado o inactivo.";
             }
         } catch (PDOException $e) {
-            die("Error al conectar a la base de datos: " . $e->getMessage());
+            return "Error al conectar a la base de datos: " . $e->getMessage();
         }
     }
 }
+
+$resultado = LoginModel::autenticar("pruebaLogin@correo.com", "123");
+
+if ($resultado) {
+    echo "Autenticación exitosa. Usuario: " . print_r($resultado, true);
+} else {
+    echo "Error: " . $resultado;
+}
+
 ?>

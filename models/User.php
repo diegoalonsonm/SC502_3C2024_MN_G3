@@ -1,11 +1,12 @@
 <?php
 require_once '../config/Conexion.php';
 
-class User extends Conexion
-{
+class User extends Conexion {
+
     /*=============================================
     =            Atributos de la Clasee     =
     =============================================*/
+
     protected static $cnx;
     private $idUsuario = null;
     private $nombre = null;
@@ -462,7 +463,6 @@ class User extends Conexion
             return json_encode($error);
         }
     }
-
     public function autenticacionLogin ($correo, $password) {
         $sql = "select * from usuario where correo = :correo and idEstado = 1";
         
