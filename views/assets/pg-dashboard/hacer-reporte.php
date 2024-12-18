@@ -10,19 +10,19 @@ if (!isset($_SESSION['idUsuario'])) {
     <form id="locationForm">
       <div class="mb-3">
         <label for="comentario">Comentario</label>
-        <textarea class="form-control" placeholder="Dejanos aquí tu situación" id="comentario"></textarea>
+        <textarea class="form-control" placeholder="Déjanos aquí tu situación" id="comentario"></textarea>
       </div>
       <div class="mb-3">
         <label for="alcantarilla">Selecciona la alcantarilla que deseas reportar</label>
         <select class="form-select" name="alcantarilla" id="alcantarilla">
           <option value="0">Selecciona la alcantarilla</option>
         </select>
-      </div>      
-      
-      <button type="submit" class="btn">Realizar reporte</button>
+      </div>
+      <button type="button" id="submitButton" class="btn">Realizar reporte</button>
     </form>
   </div>
 </section>
+
 
 <!--
 <div class="mb-3">
