@@ -45,8 +45,6 @@
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                             <button type="submit" class="btn btn-primary px-4 mb-2">Ingresar</button>
-                            //Hacer una vista nueva pagina de inicio, cuando se haga un submit mandar el usuario a esa pagina mediante a un href 
-                            poner los headers y el footer en los componentes, se pega la linea de codigo. Mapa php copiar dichas lineas
                             <br>
                             <a href="registro.php">¿Aún no tienes una cuenta? Regístrate aquí</a>
                         </form>
