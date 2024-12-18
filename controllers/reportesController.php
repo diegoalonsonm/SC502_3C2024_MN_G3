@@ -48,5 +48,17 @@ switch ($_GET["op"]) {
 
         echo $resultado;
         break;
+    case "desactivar":
+        $idReporte = isset($_POST['idReporte']) ? $_POST['idReporte'] : null;
+
+        $reporte = new Reporte();
+        $reporte->setIdReporte($idReporte);
+
+        $reporte->desactivar();
+
+        echo json_encode(["status" => "success", "message" => "Se ha cambiado el estado del reporte a Inactivo."]);
+
+        break;
+
 
 }
