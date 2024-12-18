@@ -90,6 +90,30 @@ class Reporte extends Conexion
         self::$cnx = null;
     }
 
+    public function desactivar()
+    {
+        $query = "UPDATE reportes SET idEstado=2 WHERE idReporte=:idReporte";
+
+        try {
+            self::getConexion();
+
+            $idReporte = $this->getIdReporte();
+
+            $resultado = self::$cnx->prepare($query);
+
+            $resultado->bindParam(":idReporte", $idReporte, PDO::PARAM_INT);
+
+            $resultado->execute();
+
+            self::desconectar();
+        } catch (PDOException $Exception) {
+            self::$cnx->rollBack();
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return $error;
+        }
+    }
+
     // metodos
     public static function listarReportesUltimas8SemanasGrafico()
     {
@@ -200,6 +224,9 @@ class Reporte extends Conexion
             return json_encode(['status' => 'error', 'message' => $Exception->getMessage()]);
         }
     }
+
+
+
 
 
 }
