@@ -44,7 +44,7 @@
         const locations = [
             { lat: 9.9333, lng: -84.0833, title: "Ubicación 1" }, 
             { lat: 10.0167, lng: -84.2167, title: "Ubicación 2" },  
-            { lat: 10.0025, lng: -84.1167, title: "Ubicación 3" },  
+            { lat: 10.0025, lng: -84.1167, title: "Ubicación 3" }  
         ];
 
         
