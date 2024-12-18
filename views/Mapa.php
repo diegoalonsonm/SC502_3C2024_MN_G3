@@ -8,6 +8,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="icon" href="./assets/img/aya_logo.ico" type="image/x-icon">
 
+        //api para el mapa 
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARpXhQae4eZzk-kVDuDHfoedJ9F2CH550&callback=initMap" async defer></script>
+
     </head>
     
     <body>
@@ -28,6 +31,34 @@
         <span class="blur"></span>
     </div>
 </section>
+
+<script>
+    function initMap() {
+       
+        const map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 9.933215, lng: -84.037585 }, 
+            zoom: 13
+        });
+
+        
+        const locations = [
+            { lat: 9.9333, lng: -84.0833, title: "Ubicación 1" }, 
+            { lat: 10.0167, lng: -84.2167, title: "Ubicación 2" },  
+            { lat: 10.0025, lng: -84.1167, title: "Ubicación 3" }  
+        ];
+
+        
+        locations.forEach(function(location) {
+            new google.maps.Marker({
+                position: { lat: location.lat, lng: location.lng },
+                map: map,
+                title: location.title
+            });
+        });
+    }
+</script>
+
+
 <?php include './assets/componentes/footer.php' ?>
 
 
