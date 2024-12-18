@@ -6,6 +6,7 @@ $.ajax({
     processData: false,
     success: (datos) => {
       let alcantarillas = JSON.parse(datos)
+      console.log(datos)
       let etiquetas = []
       let valores = []      
   
