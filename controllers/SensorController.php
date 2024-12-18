@@ -26,8 +26,7 @@ switch ($_GET["op"]) {
         } else {
             echo json_encode(['success' => false, 'message' => 'ID del sensor no proporcionado.']);
         }
-        break;
-    }
+        break;    
 
     case "listarSensoresActivos":
         $sensor = new Sensor();
