@@ -446,3 +446,9 @@ class User extends Conexion {
     /*=====  End of Metodos de la Clase  ======*/
 }
 
+$mode = new User();
+var_dump($mode->actualizarContrasenaHasheada(1));
+var_dump($mode->actualizarContrasenaHasheada(idUsuario: 2));
+var_dump($mode->actualizarContrasenaHasheada(3));
+var_dump($mode->actualizarContrasenaHasheada(4));
+var_dump($mode->actualizarContrasenaHasheada(5));
