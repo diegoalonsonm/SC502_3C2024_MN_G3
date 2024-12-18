@@ -39,7 +39,7 @@ if (!isset($_SESSION['idUsuario'])) {
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3 col-lg-2 d-none d-md-block bg-dark text-white p-3">
-        <a href="dashboard.php?page=inicio" class="h3 text-center text-decoration-none p-2">Dashboard</a>
+        <a href="dashboard.php?page=inicio" class="h3 text-center text-decoration-none p-2">Alcantarillas</a>
         <?php include './assets/componentes/sidebar.php'; ?>
       </div>
 
