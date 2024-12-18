@@ -48,40 +48,49 @@ $.ajax({
 
 
 
-// para la parte de eliminar
 $(document).on('click', '.btn-danger', function() {
-  var idAlarma = $(this).data('idAlarma');
+  var idAlarma = $(this).data('idalarma'); // Cambia a 'data-idalarma' si así lo declaraste
 
-  // Muestra el modal de confirmación para cambiar el estado
+  // Asocia el ID de la alarma al botón de confirmación
+  $('#confirmDeleteButton').data('idalarma', idAlarma);
+
+  // Muestra el modal de confirmación
   $('#confirmDeleteModal').modal('show');
-  $('#confirmDeleteButton').data('idAlarma', idAlarma);
 });
 
 $('#confirmDeleteButton').on('click', function() {
-  var idAlarma = $(this).data('idAlarma');
-  
+  var idAlarma = $(this).data('idalarma'); // Obtiene el ID de la alarma asociada
+
   $.ajax({
     url: '../controllers/alarmaController.php',
     method: 'POST',
     data: {
-      op: 'actualizarEstadoAlarma',
+      op: 'actualizarEstadoAlarma', // Asegúrate de que este nombre coincide con tu controlador
       idAlarma: idAlarma,
-      nuevoEstado: 2
+      nuevoEstado: 2 // Estado que corresponde a 'Inactivo'
     },
     success: function(response) {
-      if (response.success) {
-        alert('La alarma fue desactivada correctamente.');
-        $('#tbAlarmas').DataTable().ajax.reload();
-      } else {
-        alert('Hubo un error al desactivar la alarma.');
+      // Intenta convertir la respuesta en JSON
+      try {
+        var res = JSON.parse(response);
+
+        if (res.success) {
+          alert('La alarma fue desactivada correctamente.');
+          $('#tbAlarmas').DataTable().ajax.reload(); // Recarga la tabla de alarmas
+        } else {
+          alert(res.message || 'Hubo un error al desactivar la alarma.');
+        }
+      } catch (e) {
+        console.error('Error al parsear la respuesta:', e);
+        alert('Hubo un error inesperado.');
       }
+
       $('#confirmDeleteModal').modal('hide');
     },
     error: function(error) {
-      console.log(error);
+      console.error('Error en la petición AJAX:', error);
       alert('Hubo un error al intentar desactivar la alarma.');
       $('#confirmDeleteModal').modal('hide');
     }
   });
 });
-
