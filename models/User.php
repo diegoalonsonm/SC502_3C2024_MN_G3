@@ -495,6 +495,10 @@ class User extends Conexion {
     }
 
 }
+<<<<<<< HEAD
+//$mode = new User();
+//var_dump($mode->actualizarContrasenaHasheada(22));
+=======
 
     /*=====  End of Metodos de la Clase  ======*/
 
@@ -503,3 +507,4 @@ class User extends Conexion {
 //for($i=1;$i<=5;$i++){
 //    var_dump( $mode->actualizarContrasenaHasheada($i));
 //}
+>>>>>>> d4230eb13e5a8da0081fe8a719c60fff501d2192
