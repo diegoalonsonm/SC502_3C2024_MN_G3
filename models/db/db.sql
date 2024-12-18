@@ -83,7 +83,7 @@ INSERT INTO rol (descrpcion) VALUES ('Usuario');
 INSERT INTO rol (descrpcion) VALUES ('Mantenimiento');
 
 INSERT INTO usuario (nombre, apellido1, apellido2, cedula, correo, telefono, contrasena, idRol, idEstado) VALUES
-                                                                                                              ('Juan', 'Pérez', 'Gómez', '123456789', 'juan.perez@example.com', '1234567890', 'password123', 1, 1),
+                                                                                                              ('Juan', 'Pérez', 'Gómez', '1234656789', 'juan.perez@example.com', '1234567890', 'password123', 1, 1),
                                                                                                               ('María', 'López', 'Hernández', '987654321', 'maria.lopez@example.com', '0987654321', 'password456', 2, 1),
                                                                                                               ('Carlos', 'Rodríguez', 'Molina', '456123789', 'carlos.rodriguez@example.com', '4567891230', 'password789', 2, 2),
                                                                                                               ('Ana', 'Martínez', 'Vargas', '321654987', 'ana.martinez@example.com', '7891234560', 'password012', 1, 3),
