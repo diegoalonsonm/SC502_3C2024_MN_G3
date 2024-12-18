@@ -1,11 +1,25 @@
 document.addEventListener('DOMContentLoaded', function () {
     cargarProvincias();
+
+    document.getElementById('guardarDireccionbtn').addEventListener('click', function () {
+        const provincia = document.getElementById('provincia').value;
+        const canton = document.getElementById('canton').value;
+        const distrito = document.getElementById('distrito').value;
+        const otrasDirecciones = document.getElementById('otrasDirecciones').value;
+
+        if (provincia && canton && distrito && otrasDirecciones) {
+            const modalDireccion = bootstrap.Modal.getInstance(document.getElementById('modalDireccion'));
+            modalDireccion.hide();
+        } else {
+            alert('Por favor, completa todos los campos de la dirección.');
+        }
+    });
 });
 
 function cargarProvincias() {
     fetch('https://ubicaciones.paginasweb.cr/provincias.json')
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
             const provinciaSelect = document.getElementById('provincia');
             for (const id in data) {
                 const option = document.createElement('option');
@@ -14,7 +28,7 @@ function cargarProvincias() {
                 provinciaSelect.appendChild(option);
             }
         })
-        .catch(error => console.error('Error al cargar provincias:', error));
+        .catch((error) => console.error('Error al cargar provincias:', error));
 }
 
 document.getElementById('provincia').addEventListener('change', function () {
@@ -29,10 +43,9 @@ document.getElementById('provincia').addEventListener('change', function () {
 
 function cargarCantones(provinciaId) {
     fetch(`https://ubicaciones.paginasweb.cr/provincia/${provinciaId}/cantones.json`)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
             limpiarSelector('canton');
-            limpiarSelector('distrito');
             limpiarSelector('distrito');
             const cantonSelect = document.getElementById('canton');
             for (const id in data) {
@@ -42,9 +55,8 @@ function cargarCantones(provinciaId) {
                 cantonSelect.appendChild(option);
             }
         })
-        .catch(error => console.error('Error al cargar cantones:', error));
+        .catch((error) => console.error('Error al cargar cantones:', error));
 }
-
 
 document.getElementById('canton').addEventListener('change', function () {
     const provinciaId = document.getElementById('provincia').value;
@@ -58,8 +70,8 @@ document.getElementById('canton').addEventListener('change', function () {
 
 function cargarDistritos(provinciaId, cantonId) {
     fetch(`https://ubicaciones.paginasweb.cr/provincia/${provinciaId}/canton/${cantonId}/distritos.json`)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
             limpiarSelector('distrito');
             const distritoSelect = document.getElementById('distrito');
             for (const id in data) {
@@ -69,7 +81,7 @@ function cargarDistritos(provinciaId, cantonId) {
                 distritoSelect.appendChild(option);
             }
         })
-        .catch(error => console.error('Error al cargar distritos:', error));
+        .catch((error) => console.error('Error al cargar distritos:', error));
 }
 
 function limpiarSelector(id) {

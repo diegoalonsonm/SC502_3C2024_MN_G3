@@ -3,16 +3,15 @@ require_once '../models/Sensor.php';
 
 switch ($_GET["op"]) {
     case 'listarCantidadSensores':
-        $sensores = Sensor::listarCantidadSensores();        
+        $sensores = Sensor::listarCantidadSensores();
         echo json_encode($sensores);
         break;
 
     case 'listarCantidadSensoresGrafico':
-        $sensores = Sensor::listarCantidadSensoresGrafico();        
+        $sensores = Sensor::listarCantidadSensoresGrafico();
         echo json_encode($sensores);
         break;
-
-
+    
     case 'inactivarSensor':
         if (isset($_POST['idSensor'])) {
             $idSensor = $_POST['idSensor'];
@@ -28,6 +27,14 @@ switch ($_GET["op"]) {
             echo json_encode(['success' => false, 'message' => 'ID del sensor no proporcionado.']);
         }
         break;
-}
+    }
 
-?>
+    case "listarSensoresActivos":
+        $sensor = new Sensor();
+        $sensores = $sensor->listarSensoresActivos();
+        echo json_encode($sensores);
+        break;
+    default:
+        echo json_encode(["error" => "Operación no válida"]);
+        break;
+}
