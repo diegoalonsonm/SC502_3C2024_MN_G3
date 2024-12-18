@@ -496,9 +496,9 @@ class User extends Conexion {
 
 }
 
-$mode = new User();
-var_dump($mode->actualizarContrasenaHasheada(1));
-var_dump($mode->actualizarContrasenaHasheada(2));
-var_dump($mode->actualizarContrasenaHasheada(3));
-var_dump($mode->actualizarContrasenaHasheada(4));
-var_dump($mode->actualizarContrasenaHasheada(5));
+//$mode = new User();
+//var_dump($mode->actualizarContrasenaHasheada(1));
+//var_dump($mode->actualizarContrasenaHasheada(2));
+//var_dump($mode->actualizarContrasenaHasheada(3));
+//var_dump($mode->actualizarContrasenaHasheada(4));
+//var_dump($mode->actualizarContrasenaHasheada(5));
