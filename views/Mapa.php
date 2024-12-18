@@ -7,12 +7,9 @@
         <link rel="stylesheet" href="assets/css/styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="icon" href="./assets/img/aya_logo.ico" type="image/x-icon">
-
-        //api para el mapa 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARpXhQae4eZzk-kVDuDHfoedJ9F2CH550&callback=initMap" async defer></script>
-
+        
     </head>
-    
+
     <body>
     
 
@@ -32,7 +29,20 @@
     </div>
 </section>
 
+
+<script src="apimapas.js"></script>
+
+
 <script>
+
+const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap`;
+            script.async = true;
+            script.defer = true;
+
+            
+            document.head.appendChild(script);
+
     function initMap() {
        
         const map = new google.maps.Map(document.getElementById("map"), {
