@@ -2,6 +2,10 @@ $.ajax({
     url: '../controllers/reportesController.php?op=listarTodosReportes',
     method: "GET",
     dataType: 'json',
+    aProcessing: true, //actiavmos el procesamiento de datatables
+    aServerSide: true, //paginacion y filtrado del lado del serevr
+    dom: 'Bfrtip', //definimos los elementos del control de 
+    buttons: ['copyHtml5', 'excelHtml5', 'csvHtml5', 'pdf'],
     success: function (data) {      
         $('#tbReportes').DataTable({
             data: data,
@@ -52,7 +56,36 @@ $("#locationForm").submit((e) => {
   const fecha = new Date().toISOString().split('T')[0]
 
   $.ajax({
-    url: '../controllers/reportesController.php?op=registrarReporte&comentario=' + comentario + '&alcantarilla=' + alcantarilla + '&fecha=' + fecha,
+    url: '../controllers/reportesController.php?op=crearReporte&comentario=' + comentario + '&alcantarilla=' + alcantarilla + '&fecha=' + fecha,
+    type: 'POST',
+    data: { comentario, alcantarilla, fecha },
+    success: (data) => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Reporte registrado',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    },
+    error: (e) => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error al registrar el reporte'
+        })
+        console.log(e)
+      }
+  })
+})
+
+$("#formAgregarReporteAdmn").submit((e) => {
+  e.preventDefault()
+
+  const comentario = $('#comentario').val()
+  const alcantarilla = $('#alcantarilla').val()
+  const fecha = new Date().toISOString().split('T')[0]
+
+  $.ajax({
+    url: '../controllers/reportesController.php?op=crearReporte&comentario=' + comentario + '&alcantarilla=' + alcantarilla + '&fecha=' + fecha,
     type: 'POST',
     data: { comentario, alcantarilla, fecha },
     success: (data) => {

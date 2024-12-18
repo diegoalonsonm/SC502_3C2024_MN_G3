@@ -34,7 +34,19 @@ switch ($_GET["op"]) {
         $sensores = $sensor->listarSensoresActivos();
         echo json_encode($sensores);
         break;
+ case 'AgregarSensor':
+        $marca = isset($_POST["marca"]) ? $_POST["marca"] : "";
+
+        $Sensor = new Sensor();
+
+        $Sensor->setMarca($marca);
+        $resultado = $Sensor->agregarSensor();
+
+        echo 'Sensor registrado correctamente.';
+  break;
     default:
         echo json_encode(["error" => "Operación no válida"]);
-        break;
+
+   
+      
 }
