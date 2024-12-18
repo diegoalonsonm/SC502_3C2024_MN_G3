@@ -14,6 +14,8 @@ if (!isset($_SESSION['idUsuario'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="./assets/css/dashboard.css">
   <link rel="stylesheet" href="./assets/css/hacer-reportes.css">
   <link rel="stylesheet" href="./assets/css/mis-reportes.css">
@@ -39,7 +41,7 @@ if (!isset($_SESSION['idUsuario'])) {
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3 col-lg-2 d-none d-md-block bg-dark text-white p-3">
-        <a href="dashboard.php?page=inicio" class="h3 text-center text-decoration-none p-2">Dashboard</a>
+        <a href="dashboard.php?page=inicio" class="h3 text-center text-decoration-none p-2">Alcantarillas</a>
         <?php include './assets/componentes/sidebar.php'; ?>
       </div>
 
@@ -108,14 +110,14 @@ if (!isset($_SESSION['idUsuario'])) {
   </div>
 
   <script src="./plugins/jquery/jquery.min.js"></script>
-  <script src="./assets/js/cargar-ubicaciones.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="./assets/js/tablaUsuarios.js"></script>
   <script src="./assets/js/tablaSensores.js"></script>
   <script src="./assets/js/reportes.js"></script>
+  <script src="./assets/js/cargar-ubicaciones.js"></script>
   <script src="./assets/js/tablaMisReportes.js"></script>
   <script src="./assets/js/tablaAlarmas.js"></script>
   <script src="./assets/js/tablaAlcantarillas.js"></script>

@@ -3,8 +3,16 @@ if (!isset($_SESSION['idUsuario'])) {
   header('Location: login.php');
 }
 ?>
-
 <h1 class="text-center text-bold text-white">Reportes</h1>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarReporte">
+        Agregar Reporte
+      </button>
+    </div>
+  </div>
+</div>
 <div class="container mt-4">
   <div class="row">
     <div class="col">
@@ -18,10 +26,61 @@ if (!isset($_SESSION['idUsuario'])) {
               <th scope="col">Alcantarilla</th>
               <th scope="col">Usuario</th>
               <th scope="col">Estado</th>
+              <th scope="col">Opciones</th>
             </tr>
           </thead>
         </table>
       </div>
     </div>
   </div>
+</div>
+<div
+  class="modal fade"
+  id="agregarReporte"
+  tabindex="-1"
+  aria-labelledby="agregarReporteModal"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="agregarReporte">
+          Agregar Reporte
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formAgregarReporteAdmn">
+        <div class="mb-3">
+        <label for="comentario">Comentario</label>
+        <textarea class="form-control" placeholder="Dejan aquí la situación" id="comentario"></textarea>
+      </div>
+      <div class="mb-3">
+        <select class="form-select" name="alcantarilla" id="alcantarilla">
+          <option value="0">Selecciona la alcantarilla</option>
+        </select>
+      </div>    
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal">
+              Cerrar
+            </button>
+            <button type="submit" id="agregarReportebtn" class="btn btn-primary">
+              Agregar Reporte
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
 </div>

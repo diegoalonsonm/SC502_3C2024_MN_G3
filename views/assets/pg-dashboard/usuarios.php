@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col">
       <div class="card py-3 px-5" style="background-color: #f0f0f0;">
-        <table id="tbUsuarios" class="table table-hover">
+        <table id="tbUsuarios" class="display table table-hover">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -24,6 +24,7 @@
               <th scope="col">Telefono</th>
               <th scope="col">Rol</th>
               <th scope="col">Estado</th>
+              <th scope="col">Opciones</th>
             </tr>
           </thead>
         </table>
@@ -47,6 +48,7 @@
               <div class="modal-body">
                 <form id="formAgregarUsuario">
                   <div class="mb-3">
+
                     <label for="nombreAgregar" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombreAgregar" required />
                   </div>
@@ -66,46 +68,31 @@
                       class="form-control"
                       id="nombre"
                       required />
+
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+
                   </div>
                   <div class="mb-3">
-                    <label for="apellido1Agregar" class="form-label">Primer Apellido</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="apellido1"
-                      required />
+                    <label for="apellido1" class="form-label">Primer Apellido</label>
+                    <input type="text" class="form-control" id="apellido1" name="apellido1" required>
                   </div>
                   <div class="mb-3">
-                    <label for="apellido2Agregar" class="form-label">Segundo Apellido</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="apellido2"
-                      required />
+                    <label for="apellido2" class="form-label">Segundo Apellido</label>
+                    <input type="text" class="form-control" id="apellido2" name="apellido2" required>
                   </div>
                   <div class="mb-3">
-                    <label for="cedulaAgregar" class="form-label">Cédula</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="cedula"
-                      required />
+                    <label for="cedula" class="form-label">Cedula</label>
+                    <input type="text" class="form-control" id="cedula" name="cedula" required>
                   </div>
                   <div class="mb-3">
-                    <label for="correoAgregar" class="form-label">Correo</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="correo"
-                      required />
+                    <label for="numero" class="form-label">Numero telefonico</label>
+                    <input type="text" class="form-control" id="numero" name="numero" required>
                   </div>
                   <div class="mb-3">
-                    <label for="telefonoAgregar" class="form-label">Teléfono</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="telefono"
-                      required />
+                    <label for="correo" class="form-label">Correo electronico</label>
+                    <input type="email" class="form-control" id="correo" name="correo"
+                      aria-describedby="emailHelp" required>
                   </div>
                   <div class="mb-3">
                     <label for="contrasena" class="form-label">Contraseña</label>
@@ -123,19 +110,19 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                   <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal">
-                  Cerrar
-                </button>
-                <button type="submit" id="agregarUsuariobtn" class="btn btn-primary">
-                  Agregar usuario
-                </button>
-              </div>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal">
+                      Cerrar
+                    </button>
+                    <button type="submit" id="agregarUsuariobtn" class="btn btn-primary">
+                      Agregar usuario
+                    </button>
+                  </div>
                 </form>
               </div>
-             
+
             </div>
           </div>
         </div>
