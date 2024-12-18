@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col">
                     <div class="card shadow-lg w-50 mx-auto">
-                        <form class="p-5">
+                        <form id="formRegistroUsuario" class="p-5">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <a href="login.php" class="text-dark">
                                     <i class="fa-solid fa-arrow-left"></i>

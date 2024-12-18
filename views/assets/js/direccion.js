@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-
     document.getElementById('guardarDireccionbtn').addEventListener('click', function () {
         const provinciaSelect = document.getElementById('provincia');
         const cantonSelect = document.getElementById('canton');
@@ -11,8 +10,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const distritoNombre = distritoSelect.selectedOptions[0].textContent;
 
         if (provinciaNombre && cantonNombre && distritoNombre && otrasDirecciones) {
-            alert(`Dirección seleccionada: 
-        Provincia: ${provinciaNombre}, Cantón: ${cantonNombre}, Distrito: ${distritoNombre}, Otras: ${otrasDirecciones}`);
+            Swal.fire({
+                title: 'Dirección seleccionada',
+                html: `
+                    <p>Provincia: ${provinciaNombre}</p>
+                    <p>Cantón: ${cantonNombre}</p>
+                    <p>Distrito: ${distritoNombre}</p>
+                    <p>Otras: ${otrasDirecciones}</p>
+                `,
+                icon: 'info',
+                confirmButtonText: 'Aceptar'
+            });
 
             const direccionData = {
                 provincia: provinciaNombre,
@@ -28,7 +36,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             resetearCampos();
         } else {
-            alert('Por favor, completa todos los campos de la dirección.');
+            Swal.fire({
+                title: 'Error',
+                text: 'Por favor, completa todos los campos de la dirección.',
+                icon: 'warning',
+                confirmButtonText: 'Aceptar'
+            });
         }
     });
 });
@@ -41,7 +54,6 @@ document.getElementById('guardarDireccionbtn').addEventListener('click', functio
     modalAgregarAlcantarilla.show();
 });
 
-
 function enviarDireccion(data) {
     fetch('../controllers/direccionController.php?op=insertarDireccion', {
         method: 'POST',
@@ -53,12 +65,30 @@ function enviarDireccion(data) {
         .then((response) => response.json())
         .then((result) => {
             if (result.success) {
-                alert('Dirección guardada con éxito.');
+                Swal.fire({
+                    title: 'Éxito',
+                    text: 'Dirección guardada con éxito.',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
             } else {
-                alert('Error al guardar la dirección: ' + result.error);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Error al guardar la dirección: ' + result.error,
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
             }
         })
-        .catch((error) => console.error('Error en la solicitud:', error));
+        .catch((error) => {
+            console.error('Error en la solicitud:', error);
+            Swal.fire({
+                title: 'Error',
+                text: 'Hubo un problema al guardar la dirección.',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            });
+        });
 }
 
 function resetearCampos() {
