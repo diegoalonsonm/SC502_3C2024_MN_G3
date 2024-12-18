@@ -31,6 +31,16 @@
         <button class="next" id="carousel-next">&#10095;</button>
     </section>
 
+
+    <div class="container">
+            <h1 class="text-white"><center>¡Bienvenidos a Alcantarillado Costa Rica!</center></h1>
+            <br>
+            <p class="text-white"><center>
+                Este sistema está diseñado para monitorear el estado del alcantarillado en Costa Rica, 
+                ofreciendo herramientas para gestionar alertas, mapas interactivos y reportes.
+            </center></p>
+    </div>
+
     <section class="map-container">
         <div class="content">
             <span class="blur"></span>

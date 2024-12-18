@@ -114,6 +114,41 @@ class Sensor extends Conexion
         }
     }
 
+    public static function inactivarSensor($idSensor) {
+        $query = "UPDATE sensor SET idEstado = 2 WHERE idSensor = :idSensor";
+
+        try {
+          self::getConexion();
+            $stmt = self::$cnx->prepare($query);
+            $stmt->bindParam(':idSensor', $idSensor, PDO::PARAM_INT);
+            $stmt->execute();
+            self::desconectar();
+            
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            return false;
+        }
+    }
+
+    public static function listarSensoresActivos()
+    {
+        $query = "SELECT idSensor, codigo FROM sensor WHERE idEstado = 1";
+
+        try {
+            self::getConexion();
+            $resultado = self::$cnx->prepare($query);
+            $resultado->execute();
+            self::desconectar();
+
+            return $resultado->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return json_encode(['error' => $error]);
+        }
+    }
+
     public function agregarSensor()
     {
         $query = "INSERT INTO `sensor`(`marca`) 

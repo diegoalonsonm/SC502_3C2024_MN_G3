@@ -1,9 +1,9 @@
 <?php
-  session_start();
+session_start();
 
-  if (!isset($_SESSION['idUsuario'])) {
-    header('Location: login.php');
-  }
+if (!isset($_SESSION['idUsuario'])) {
+  header('Location: login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +41,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3 col-lg-2 d-none d-md-block bg-dark text-white p-3">
-        <a href="dashboard.php?page=inicio" class="h3 text-center text-decoration-none p-2">Dashboard</a>
+        <a href="dashboard.php?page=inicio" class="h3 text-center text-decoration-none p-2">Alcantarillas</a>
         <?php include './assets/componentes/sidebar.php'; ?>
       </div>
 
@@ -49,7 +49,7 @@
         <div class="d-flex justify-content-end dropdown">
           <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <strong><?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Usuario'; ?></strong>      
+            <strong><?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'Usuario'; ?></strong>
           </a>
 
           <ul class="dropdown-menu text-small shadow">
@@ -95,10 +95,10 @@
               require './assets/pg-dashboard/mantenimiento.php';
               break;
             case 'mis-mantenimientos':
-                require './assets/pg-dashboard/mis-mantenimientos.php';
-                break;
+              require './assets/pg-dashboard/mis-mantenimientos.php';
+              break;
             default:
-            require './assets/pg-dashboard/inicio.php';
+              require './assets/pg-dashboard/inicio.php';
               break;
           }
         } else {
@@ -120,11 +120,12 @@
   <script src="./assets/js/cargar-ubicaciones.js"></script>
   <script src="./assets/js/tablaMisReportes.js"></script>
   <script src="./assets/js/tablaAlarmas.js"></script>
-  <script src="./assets/js/tablaAlcantarillas.js"></script>  
-  <script src="./assets/js/mantenimiento.js"></script>  
+  <script src="./assets/js/tablaAlcantarillas.js"></script>
+  <script src="./assets/js/mantenimiento.js"></script>
+  <script src="./assets/js/sensoresListado.js"></script>
+  <script src="./assets/js/direccion.js"></script>
+  <script src="./assets/js/alcantarilla.js"></script>
   <script src="./assets/js/registrarUsuario.js"></script>
-  <script src="./assets/js/registrarSensor.js"></script>
-  
 </body>
 
 </html>

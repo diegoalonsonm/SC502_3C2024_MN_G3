@@ -29,12 +29,12 @@ class LoginModel
     }
 }
 
-$resultado = LoginModel::autenticar("pruebaLogin@correo.com", "123");
+//$resultado = LoginModel::autenticar("scooby.doo@example.com", "password159");
 
-if ($resultado) {
-    echo "Autenticación exitosa. Usuario: " . print_r($resultado, true);
-} else {
-    echo "Error: " . $resultado;
-}
+//if ($resultado) {
+//    echo "Autenticación exitosa. Usuario: " . print_r($resultado, true);
+//} else {
+//    echo "Error: " . $resultado;
+//}
 
 ?>
