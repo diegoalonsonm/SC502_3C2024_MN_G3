@@ -86,23 +86,25 @@ class Alarma extends Conexion {
     }
 
     // actualizar el estado de la alarma a inactivo (cambiar de activo a inactivo)
-    public static function actualizarEstadoAlarma($idAlarma, $nuevoEstado) {
-        $sql = "UPDATE alarma SET idEstado = :nuevoEstado WHERE idAlarma = :idAlarma";  // Corrige el orden de los parámetros
+    public function actualizarEstadoAlarma() {
+        $sql = "UPDATE alarma SET idEstado = 2 WHERE idAlarma = :idAlarma";  // Corrige el orden de los parámetros
     
         try {
             self::getConexion();
-            $stmt = self::$cnx->prepare($sql);
-            $stmt->bindParam(':nuevoEstado', $nuevoEstado, PDO::PARAM_INT);  // Primero se pasa el nuevoEstado
-            $stmt->bindParam(':idAlarma', $idAlarma, PDO::PARAM_INT);  // Después el idAlarma
-    
-            $resultado = $stmt->execute();  // Ejecutamos la consulta
-            self::desconectar();
+
+            $idAlarma = $this->getIdAlarma();
             
-            return $resultado;  // Devolvemos el resultado (true o false)
+            $resultado = self::$cnx->prepare($sql);
+
+            $resultado->bindParam(':idAlarma', $idAlarma, PDO::PARAM_INT);
+
+            $resultado->execute();
+
+            self::desconectar();            
         } catch (PDOException $Exception) {
             self::desconectar();
-            error_log("Error al actualizar estado: " . $Exception->getMessage());  // Error logging
-            return false;
+            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );;
+            return json_encode($error);
         }
     }
     
@@ -110,6 +112,6 @@ class Alarma extends Conexion {
 }
 
 //$alarma = new Alarma();
-//var_dump($alarma->listarAlarmasTabla());
+//var_dump($alarma->actualizarEstadoAlarma());
 
 ?>

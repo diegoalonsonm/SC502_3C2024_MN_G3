@@ -243,17 +243,20 @@ class User extends Conexion {
 
     public function desactivar()
     {
-        $idUsuario = $this->getIdUsuario();
-        $query = "UPDATE usuarios SET idEstado='0' WHERE idUsuario=:idUsuario";
+        $query = "UPDATE usuario SET idEstado=2 WHERE idUsuario=:idUsuario";
+
         try {
             self::getConexion();
+
+            $idUsuario = $this->getIdUsuario();
+
             $resultado = self::$cnx->prepare($query);
+
             $resultado->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
-            self::$cnx->beginTransaction(); //desactiva el autocommit
+            
             $resultado->execute();
-            self::$cnx->commit(); //realiza el commit y vuelve al modo autocommit
-            self::desconectar();
-            return $resultado->rowCount();
+
+            self::desconectar();            
         } catch (PDOException $Exception) {
             self::$cnx->rollBack();
             self::desconectar();

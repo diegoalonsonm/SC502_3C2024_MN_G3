@@ -5,10 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alcantarillado Costa Rica</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="./assets/img/aya_logo.ico" type="image/x-icon">
-
+    <style>
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,12 +41,12 @@
 
 
     <div class="container">
-            <h1 class="text-white"><center>¡Bienvenidos a Alcantarillado Costa Rica!</center></h1>
+            <h1 class="center-content">¡Bienvenidos a Alcantarillado Costa Rica!</h1>
             <br>
-            <p class="text-white"><center>
+            <p class="center-content">
                 Este sistema está diseñado para monitorear el estado del alcantarillado en Costa Rica, 
                 ofreciendo herramientas para gestionar alertas, mapas interactivos y reportes.
-            </center></p>
+            </p>
     </div>
 
     <section class="map-container">

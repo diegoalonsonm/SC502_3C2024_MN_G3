@@ -70,4 +70,16 @@ switch ($_GET["op"]) {
         $empleados = $user->listarEmpleadosActivosInactivosGrafico();
         echo json_encode($empleados);
         break;
+
+    case "desactivar":
+        $idUsuario = isset($_POST['idUsuario']) ? $_POST['idUsuario'] : null;
+    
+        $user = new User();
+        $user->setIdUsuario($idUsuario);
+    
+        $user->desactivar();
+    
+        echo "Se ha eliminado correctamente el usuario";
+            
+        break;
 }

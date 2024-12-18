@@ -100,7 +100,7 @@ function finalizarMantenimiento (idMantenimiento) {
                 url: '../controllers/mantenimientoController.php?op=finalizarMantenimiento&idMantenimiento=' + idMantenimiento,
                 type: 'POST',
                 data: { idMantenimiento: idMantenimiento },
-                success: function(response) {                    
+                success: function(response) {                                        
                     Swal.fire(
                         'Finalizado!',
                         'El mantenimiento ha sido finalizado.',
@@ -154,7 +154,7 @@ $.ajax({
     }
 })
 
-$("form").submit((e) => {
+$("#agregarMantenimiento").submit((e) => {
     e.preventDefault()
 
     const instrucciones = $('#instrucciones').val()

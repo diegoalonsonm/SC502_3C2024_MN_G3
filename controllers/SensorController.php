@@ -13,26 +13,23 @@ switch ($_GET["op"]) {
         break;
     
     case 'inactivarSensor':
-        if (isset($_POST['idSensor'])) {
-            $idSensor = $_POST['idSensor'];
-            
-            $resultado = Sensor::inactivarSensor($idSensor);
-            
-            if ($resultado) {
-                echo json_encode(['success' => true]);
-            } else {
-                echo json_encode(['success' => false, 'message' => 'No se pudo inactivar el sensor.']);
-            }
-        } else {
-            echo json_encode(['success' => false, 'message' => 'ID del sensor no proporcionado.']);
-        }
-        break;    
+        $idSensor = isset($_POST['idSensor']) ? $_POST['idSensor'] : null;
+
+        $sensor = new Sensor();
+        $sensor->setIdSensor($idSensor);
+
+        $sensor->inactivarSensor();
+
+        echo "Se ha actualizado el estado del sensor";
+        
+        break;
 
     case "listarSensoresActivos":
         $sensor = new Sensor();
         $sensores = $sensor->listarSensoresActivos();
         echo json_encode($sensores);
         break;
+
  case 'AgregarSensor':
         $marca = isset($_POST["marca"]) ? $_POST["marca"] : "";
 
