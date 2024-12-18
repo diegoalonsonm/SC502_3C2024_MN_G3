@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="icon" href="./assets/img/aya_logo.ico" type="image/x-icon">
 
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARpXhQae4eZzk-kVDuDHfoedJ9F2CH550&callback=initMap" async defer></script>
+
     </head>
     
     <body>
