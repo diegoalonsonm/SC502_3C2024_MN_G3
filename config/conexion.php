@@ -19,5 +19,3 @@ class Conexion
     }
 
 }
-
-var_dump(Conexion::conectar());

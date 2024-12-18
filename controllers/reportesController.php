@@ -7,34 +7,38 @@ switch ($_GET["op"]) {
         $reporte = new Reporte();
         $reportes = $reporte->listarReportesUltimas8SemanasGrafico();
         echo json_encode($reportes);
-    break;
+        break;
 
     case "listarReportesPorUsuarioGrafico":
         $reporte = new Reporte();
         $reportes = $reporte->listarReportesPorUsuarioGrafico();
         echo json_encode($reportes);
-    break;
+        break;
 
     case "listarTodosReportes":
         $reporte = new Reporte();
         $reportes = $reporte->listarTodosReportes();
         echo json_encode($reportes);
-    break;
+        break;
 
     case "listarMisReportes":
         $reporte = new Reporte();
-        $reportes = $reporte->listarMisReportes($_SESSION['idUsuario']);        
+        $reportes = $reporte->listarMisReportes($_SESSION['idUsuario']);
         echo json_encode($reportes);
-    break;
+        break;
 
     case "crearReporte":
         $comentario = isset($_POST["comentario"]) ? $_POST["comentario"] : "";
         $alcantarilla = isset($_POST["alcantarilla"]) ? $_POST["alcantarilla"] : "";
-        $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
+        $fecha = date('Y-m-d H:i:s'); // Fecha actual
         $usuario = isset($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : "";
 
-        $reporte = new Reporte();
+        if (empty($usuario)) {
+            echo json_encode(['status' => 'error', 'message' => 'Usuario no autenticado']);
+            exit;
+        }
 
+        $reporte = new Reporte();
         $reporte->setComentario($comentario);
         $reporte->setIdAlcantarilla($alcantarilla);
         $reporte->setFecha($fecha);
@@ -42,6 +46,7 @@ switch ($_GET["op"]) {
 
         $resultado = $reporte->crearReporte();
 
-        echo 'Reporte creado correctamente.';
+        echo $resultado;
         break;
+
 }

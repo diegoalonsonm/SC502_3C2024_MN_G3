@@ -26,15 +26,26 @@ switch ($_GET["op"]) {
         } else {
             echo json_encode(['success' => false, 'message' => 'ID del sensor no proporcionado.']);
         }
-        break;
-    }
+        break;    
 
     case "listarSensoresActivos":
         $sensor = new Sensor();
         $sensores = $sensor->listarSensoresActivos();
         echo json_encode($sensores);
         break;
+ case 'AgregarSensor':
+        $marca = isset($_POST["marca"]) ? $_POST["marca"] : "";
+
+        $Sensor = new Sensor();
+
+        $Sensor->setMarca($marca);
+        $resultado = $Sensor->agregarSensor();
+
+        echo 'Sensor registrado correctamente.';
+  break;
     default:
         echo json_encode(["error" => "Operación no válida"]);
-        break;
+
+   
+      
 }

@@ -21,7 +21,6 @@ switch ($_GET["op"]) {
 
         $usuario = new User();
         $usuario->setCedula($cedula);
-
         $usuario->setNombre($nombre);
         $usuario->setApellido1($apellido1);
         $usuario->setApellido2($apellido2);

@@ -3,6 +3,7 @@ $.ajax({
     method: "GET",
     dataType: 'json',
     success: function (data) {
+      console.log(data)
         $('#tbSensores').DataTable({
             data: data,
             "columns": [
@@ -34,6 +35,8 @@ $.ajax({
                 }
             ]
         })
+    }, error: function (error) {
+        console.log('error: ', error);
     }
 });
 

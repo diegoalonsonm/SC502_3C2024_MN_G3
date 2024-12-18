@@ -14,9 +14,7 @@ class Sensor extends Conexion
     private $cantidadUsos;
 
     // constructor
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     // getters y setters
     public function getIdSensor()
@@ -116,7 +114,6 @@ class Sensor extends Conexion
         }
     }
 
-
     public static function inactivarSensor($idSensor) {
         $query = "UPDATE sensor SET idEstado = 2 WHERE idSensor = :idSensor";
 
@@ -151,9 +148,25 @@ class Sensor extends Conexion
             return json_encode(['error' => $error]);
         }
     }
-}
 
+    public function agregarSensor()
+    {
+        $query = "INSERT INTO `sensor`(`marca`) 
+    VALUES (:marca)";
+    try {
+        self::getConexion();
+        $marca = $this->getMarca();
+        $resultado = self::$cnx->prepare($query);
+        $resultado->bindParam("marca", $marca, PDO::PARAM_STR);
+        $resultado->execute();
+        self::desconectar();
+        return true;
+    }catch (PDOException $Exception) {
+        self::desconectar();
+        $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
+      return $error;
+    }
+}
+}
 //$sensor = new Sensor();
 //var_dump($sensor->listarCantidadSensoresGrafico());
-
-?>

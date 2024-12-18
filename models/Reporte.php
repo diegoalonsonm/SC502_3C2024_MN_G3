@@ -1,7 +1,8 @@
 <?php
 require_once '../config/Conexion.php';
 
-class Reporte extends Conexion {
+class Reporte extends Conexion
+{
 
     // atributos 
     protected static $cnx;
@@ -13,69 +14,85 @@ class Reporte extends Conexion {
     private $idEstado;
 
     // constructor
-    public function __construct() {
+    public function __construct()
+    {
     }
 
     // getters y setters
-    public function getIdReporte() {
+    public function getIdReporte()
+    {
         return $this->idReporte;
     }
 
-    public function setIdReporte($idReporte) {
+    public function setIdReporte($idReporte)
+    {
         $this->idReporte = $idReporte;
     }
 
-    public function getComentario() {
+    public function getComentario()
+    {
         return $this->comentario;
     }
 
-    public function setComentario($comentario) {
+    public function setComentario($comentario)
+    {
         $this->comentario = $comentario;
     }
 
-    public function getFecha() {
+    public function getFecha()
+    {
         return $this->fecha;
     }
 
-    public function setFecha($fecha) {
+    public function setFecha($fecha)
+    {
         $this->fecha = $fecha;
     }
 
-    public function getIdAlcantarilla() {
+    public function getIdAlcantarilla()
+    {
         return $this->idAlcantarilla;
     }
 
-    public function setIdAlcantarilla($idAlcantarilla) {
+    public function setIdAlcantarilla($idAlcantarilla)
+    {
         $this->idAlcantarilla = $idAlcantarilla;
     }
 
-    public function getIdUsuario() {
+    public function getIdUsuario()
+    {
         return $this->idUsuario;
     }
 
-    public function setIdUsuario($idUsuario) {
+    public function setIdUsuario($idUsuario)
+    {
         $this->idUsuario = $idUsuario;
     }
 
-    public function getIdEstado() {
+    public function getIdEstado()
+    {
         return $this->idEstado;
     }
 
-    public function setIdEstado($idEstado) {
+    public function setIdEstado($idEstado)
+    {
         $this->idEstado = $idEstado;
     }
 
     // metodos de conexion
-    public static function getConexion(){
+    public static function getConexion()
+    {
         self::$cnx = Conexion::conectar();
     }
 
-    public static function desconectar(){
+    public static function desconectar()
+    {
         self::$cnx = null;
     }
 
     // metodos
-    public static function listarReportesUltimas8SemanasGrafico() {
+    public static function listarReportesUltimas8SemanasGrafico()
+    {
         $sql = "SELECT YEAR(fecha) AS anno, WEEK(fecha) AS semana, COUNT(idReporte) AS cantidad_reportes FROM reportes WHERE fecha >= DATE_SUB(CURDATE(), INTERVAL 7 WEEK) GROUP BY anno, semana ORDER BY anno DESC, semana DESC;";
 
         try {
@@ -85,16 +102,17 @@ class Reporte extends Conexion {
             $resultado->execute();
 
             self::desconectar();
-            
+
             return $resultado->fetchAll();
         } catch (PDOException $Exception) {
             self::desconectar();
-            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
             return json_encode($error);
         }
     }
 
-    public static function listarReportesPorUsuarioGrafico() {
+    public static function listarReportesPorUsuarioGrafico()
+    {
         $sql = "SELECT r.idUsuario, COUNT(r.idReporte) AS cantidad_reportes FROM reportes r GROUP BY r.idUsuario ORDER BY cantidad_reportes DESC LIMIT 3;";
 
         try {
@@ -104,16 +122,17 @@ class Reporte extends Conexion {
             $resultado->execute();
 
             self::desconectar();
-            
+
             return $resultado->fetchAll();
         } catch (PDOException $Exception) {
             self::desconectar();
-            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
             return json_encode($error);
         }
     }
 
-    public static function listarTodosReportes() {
+    public static function listarTodosReportes()
+    {
         $sql = "select r.idReporte, r.comentario, r.fecha, u.correo, a.codigo as codigo_alcantarilla, e.idEstado from reportes r join alcantarilla a on r.idAlcantarilla = a.idAlcantarilla join estado e on r.idEstado = e.idEstado join usuario u on r.idUsuario = u.idUsuario";
 
         try {
@@ -123,18 +142,19 @@ class Reporte extends Conexion {
             $resultado->execute();
 
             self::desconectar();
-            
+
             return $resultado->fetchAll();
         } catch (PDOException $Exception) {
             self::desconectar();
-            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
             return json_encode($error);
         }
     }
 
-    public static function listarMisReportes($idUsuario) {
+    public static function listarMisReportes($idUsuario)
+    {
         $sql = "SELECT r.idReporte, r.comentario, r.fecha, a.codigo as codigo_alcantarilla, e.idEstado FROM reportes r JOIN alcantarilla a ON r.idAlcantarilla = a.idAlcantarilla JOIN estado e ON r.idEstado = e.idEstado WHERE r.idUsuario = :idUsuario";
-        
+
         try {
             self::getConexion();
 
@@ -143,17 +163,18 @@ class Reporte extends Conexion {
             $resultado->execute();
 
             self::desconectar();
-            
+
             return $resultado->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $Exception) {
             self::desconectar();
-            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
             return json_encode($error);
         }
     }
 
-    public function crearReporte() {
-        $sql = "insert into reportes (comentario, fecha, idAlcantarilla, idUsuario) values (:comentario, :fecha, :idAlcantarilla, :idUsuario)";
+    public function crearReporte()
+    {
+        $sql = "INSERT INTO reportes (comentario, fecha, idAlcantarilla, idUsuario, idEstado) VALUES (:comentario, :fecha, :idAlcantarilla, :idUsuario, 1)";
 
         try {
             self::getConexion();
@@ -162,7 +183,7 @@ class Reporte extends Conexion {
             $fecha = $this->getFecha();
             $idAlcantarilla = $this->getIdAlcantarilla();
             $idUsuario = $this->getIdUsuario();
-            
+
             $resultado = self::$cnx->prepare($sql);
 
             $resultado->bindParam(':comentario', $comentario, PDO::PARAM_STR);
@@ -173,12 +194,13 @@ class Reporte extends Conexion {
             $resultado->execute();
 
             self::desconectar();
+            return json_encode(['status' => 'success', 'message' => 'Reporte creado correctamente']);
         } catch (PDOException $Exception) {
             self::desconectar();
-            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );;
-          return json_encode($error);
+            return json_encode(['status' => 'error', 'message' => $Exception->getMessage()]);
         }
     }
+
 
 }
 
