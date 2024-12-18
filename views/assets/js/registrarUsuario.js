@@ -61,21 +61,21 @@ $(document).ready(function () {
     });
 });
 
-$("form").submit((e) => {
+$("formAgregarUsuario").submit((e) => {
 
     const nombre = $('#nombre').val()
     const apellido1 = $('#apellido1').val()
     const apellido2 = $('#apellido2').val()
     const correo = $('#correo').val()
     const contrasena = $('#contrasena').val()
-    const telefono = $('#telefono').val()
+    const telefono = $('#numero').val()
     const cedula = $('#cedula').val()
     const rol = $('#rol').val()
 
     e.preventDefault()
 
     $.ajax({
-        url: '../controllers/UserController.php?op=AgregarComoAdmn&nombre=' + nombre + '&apellido1=' + apellido1 + '&apellido2=' + apellido2 + '&correo=' + correo + '&contrasena=' + contrasena + '&telefono=' + telefono + '&cedula=' + cedula + '&idRol=' + rol,
+        url: '../controllers/UserController.php?op=AgregarComoAdmn&nombre=' + nombre + '&apellido1=' + apellido1 + '&apellido2=' + apellido2 + '&correo=' + correo + '&contrasena=' + contrasena + '&telefono=' + telefono + '&cedula=' + cedula + '&Rol=' + rol,
         type: 'POST',
         data: { nombre, apellido1, apellido2, correo, contrasena, telefono, cedula, rol },
         success: (data) => {
@@ -84,7 +84,10 @@ $("form").submit((e) => {
                 title: 'Usuario registrado',
                 showConfirmButton: false,
                 timer: 1500
-            })
+            });
+            setTimeout(() => {
+                window.location.href = 'dashboard.php'
+            }, 1500)
 
         },
         error: (e) => {
