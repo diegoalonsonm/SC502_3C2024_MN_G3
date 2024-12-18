@@ -13,7 +13,6 @@ $(document).ready(() => {
 })
 
 $(document).ready(function () {
-
     $('#agregarAlcantarillabtn').click(function () {
         const idSensor = $('#idSensor').val();
         if (idSensor) {
@@ -36,24 +35,52 @@ $(document).ready(function () {
                         data: alcantarillaData,
                         success: function (response) {
                             if (response.success) {
-                                alert('Alcantarilla agregada con éxito.');
-                                $('#agregarAlcantarilla').modal('hide');
+                                Swal.fire({
+                                    title: 'Éxito',
+                                    text: 'Alcantarilla agregada con éxito.',
+                                    icon: 'success',
+                                    confirmButtonText: 'Aceptar'
+                                }).then(() => {
+                                    $('#agregarAlcantarilla').modal('hide');
+                                    location.reload();
+                                });
                             } else {
-                                alert('Error al agregar la alcantarilla: ' + response.error);
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: 'Error al agregar la alcantarilla: ' + response.error,
+                                    icon: 'error',
+                                    confirmButtonText: 'Aceptar'
+                                });
                             }
                         },
                         error: function (error) {
                             console.log("Error al insertar la alcantarilla:", error);
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Hubo un error al insertar la alcantarilla.',
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            });
                         }
                     });
                 },
                 error: function (error) {
                     console.log("Error al obtener la última dirección:", error);
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Hubo un error al obtener la última dirección.',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    });
                 }
             });
         } else {
-            alert("Por favor, selecciona un sensor.");
+            Swal.fire({
+                title: 'Advertencia',
+                text: 'Por favor, selecciona un sensor.',
+                icon: 'warning',
+                confirmButtonText: 'Aceptar'
+            });
         }
     });
-
 });
