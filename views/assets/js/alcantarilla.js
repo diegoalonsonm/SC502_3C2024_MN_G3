@@ -13,7 +13,6 @@ $(document).ready(() => {
 })
 
 $(document).ready(function () {
-
     $('#agregarAlcantarillabtn').click(function () {
         const idSensor = $('#idSensor').val();
         if (idSensor) {
@@ -55,5 +54,4 @@ $(document).ready(function () {
             alert("Por favor, selecciona un sensor.");
         }
     });
-
 });
