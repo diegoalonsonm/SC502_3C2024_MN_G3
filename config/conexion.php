@@ -20,4 +20,4 @@ class Conexion
 
 }
 
-var_dump(Conexion::conectar());
+//var_dump(Conexion::conectar());
