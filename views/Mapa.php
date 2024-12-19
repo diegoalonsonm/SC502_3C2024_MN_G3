@@ -47,13 +47,18 @@
         ];
 
         
-        locations.forEach(function(location) {
-            new google.maps.Marker({
-                position: { lat: location.lat, lng: location.lng },
-                map: map,
-                title: location.title
+        const bounds = new google.maps.LatLngBounds();
+
+            locations.forEach(function(location) {
+                const marker = new google.maps.Marker({
+                    position: { lat: location.lat, lng: location.lng },
+                    map: map,
+                    title: location.title
+                });
+                bounds.extend(marker.position);
             });
-        });
+
+            map.fitBounds(bounds);
     }
 </script>
 

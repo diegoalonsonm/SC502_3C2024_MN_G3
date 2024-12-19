@@ -74,7 +74,7 @@ $.ajax({
                 },
                 {'data': null,
                     render: function (data, type, row) {
-                        return `<button class="btn btn-secondary" onclick="finalizarMantenimiento(${data.idMantenimiento})">Completar</button>`
+                        return `<button class="btn btn-secondary" onclick="finalizarMantenimiento(${data.idMantenimiento})">Completar</button>`                    
                     }
                 }
             ]

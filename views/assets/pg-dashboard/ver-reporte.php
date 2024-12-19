@@ -4,6 +4,8 @@ if (!isset($_SESSION['idUsuario'])) {
 }
 ?>
 <h1 class="text-center text-bold text-white">Reportes</h1>
+
+<?php if ($_SESSION['idRol'] != 3): ?>
 <div class="container mt-4">
   <div class="row">
     <div class="col">
@@ -13,6 +15,7 @@ if (!isset($_SESSION['idUsuario'])) {
     </div>
   </div>
 </div>
+<?php endif; ?>
 <div class="container mt-4">
   <div class="row">
     <div class="col">
